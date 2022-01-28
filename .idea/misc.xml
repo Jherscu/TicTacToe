@@ -11,6 +11,8 @@
         <entry key="app/src/main/res/drawable/icon_o.xml" value="0.187" />
         <entry key="app/src/main/res/drawable/icon_x.xml" value="0.187" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19947916666666668" />
+        <entry key="app/src/main/res/layout/fragment_game.xml" value="0.30570652173913043" />
+        <entry key="app/src/main/res/layout/fragment_landing.xml" value="0.30570652173913043" />
       </map>
     </option>
   </component>
