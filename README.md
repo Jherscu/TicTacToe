@@ -2,13 +2,15 @@
 Basic Two Player Tic Tac Toe app utilizing:
 
 - Fragments and Jetpack Navigation Component
+- SafeArgs
 - JUnit, Espresso, Hamcrest
 - ViewModel
 - LiveData
 
 User Story:
 
-- User1 enters app at Landing Fragment and starts a new game with User2
+- User1 enters app at Landing Fragment
+- User1 and User2 enter a name or use the default ones to start a new game
 - In Game Fragment, User1 takes a turn at tic tac toe, as signaled by player turn view
 - User2 takes a turn as signaled by player turn view
 - Process repeats until:
