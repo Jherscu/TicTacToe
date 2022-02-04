@@ -23,3 +23,17 @@ User Story:
     - a User cancels the game with the END GAME button
 
         - Dialog pops up asking Users if they are sure they want to end the game
+
+
+    TASKS:
+
+    - Implement navigation to test fragments including start and end game buttons and
+    navhostfragment code in MainActivity
+
+    - Game logic
+
+    - Tests
+
+    - Resolve Gradle issues
+
+    - Resolve accessibility issues

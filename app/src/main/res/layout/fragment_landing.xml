@@ -18,42 +18,45 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/player_one_name"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="164dp"
         android:layout_marginBottom="24dp"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/player_one_name_edit_text"
-            android:hint="@string/player_one_name"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="48dp"
+            android:hint="@string/player_one_name"
+            android:textColorHint="#00695C" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/player_two_name"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="164dp"
         android:layout_marginBottom="24dp"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/player_two_name_edit_text"
-            android:hint="@string/player_two_name"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="48dp"
+            android:hint="@string/player_two_name"
+            android:textColorHint="#00695C" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_start_game"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/start_game"
-        app:strokeWidth="3dp"
+        android:textColor="#5E35B1"
         app:cornerRadius="6dp"
         app:strokeColor="@color/purple_500"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+        app:strokeWidth="3dp" />
 
 </LinearLayout>
