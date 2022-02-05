@@ -27,13 +27,23 @@ User Story:
 
     TASKS:
 
-    - Implement navigation to test fragments including start and end game buttons and
+    - Implement Basic layout [X - 2/3/22]
+
+    - Implement Basic Nav functionality [X - 2/3/22]
+
+    - Resolve Gradle issues [X - 2/5/22]
+
+    - Implement navigation to test fragments/animations including start and end game buttons and
     navhostfragment code in MainActivity
+
+    - Add Live Arg Bundles to pass player names to navigation
+
+    - Tests / Skeletal outline of functions
 
     - Game logic
 
-    - Tests
+    - Add dialogs
 
-    - Resolve Gradle issues
+    - Resolve accessibility issues/fine tune UI
 
-    - Resolve accessibility issues
+    - Practice prepping for play store
