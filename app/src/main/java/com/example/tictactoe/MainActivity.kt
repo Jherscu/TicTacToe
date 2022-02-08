@@ -1,7 +1,7 @@
 package com.example.tictactoe
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
 /**
  * [MainActivity] hosts the fragments for the Tic Tac Toe app.
