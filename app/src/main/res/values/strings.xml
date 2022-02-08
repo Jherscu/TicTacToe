@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">TicTacToe</string>
+    <string name="board">Tic Tac Toe Board</string>
+    <string name="u_l_empty">Upper Left Box: Empty</string>
+    <string name="u_c_empty">Upper Center Box: Empty</string>
+    <string name="u_r_empty">Upper Right Box: Empty</string>
+    <string name="c_l_empty">Center Left Box: Empty</string>
+    <string name="c_empty">Center Box: Empty</string>
+    <string name="c_r_empty">Center Right Box: Empty</string>
+    <string name="l_l_empty">Lower Left Box: Empty</string>
+    <string name="l_c_empty">Lower Center Box: Empty</string>
+    <string name="l_r_empty">Lower Right Box: Empty</string>
+    <string name="content_description_format">$1s Box: $2s</string>
+    <string name="end_game">END GAME</string>
+    <string name="start_game">START GAME</string>
+    <string name="player_one_name">Player 1: X</string>
+    <string name="player_two_name">Player 2: O</string>
 </resources>
