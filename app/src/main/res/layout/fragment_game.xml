@@ -28,10 +28,10 @@
             android:src="@drawable/icon_background"
             app:layout_constraintBottom_toBottomOf="@id/tic_tac_toe_board"
             app:layout_constraintEnd_toEndOf="@id/tic_tac_toe_board"
-            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintHorizontal_bias="0.46"
             app:layout_constraintStart_toStartOf="@id/tic_tac_toe_board"
             app:layout_constraintTop_toTopOf="@id/tic_tac_toe_board"
-            app:layout_constraintVertical_bias="0.48000002" />
+            app:layout_constraintVertical_bias="0.5" />
 
         <GridLayout
             android:id="@+id/tic_tac_toe_board"
