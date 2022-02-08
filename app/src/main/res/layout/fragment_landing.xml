@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/landing_fragment"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/teal_200"
     android:gravity="center"
-    android:background="@color/teal_200">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/title"
-        android:text="@string/app_name"
-        android:textSize="36sp"
-        android:textColor="@color/purple_500"
-        android:layout_marginBottom="64dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:text="@string/app_name"
+        android:textColor="@color/purple_500"
+        android:textSize="36sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/player_one_name"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="164dp"
-        android:layout_marginBottom="24dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/player_one_name_edit_text"
@@ -36,8 +37,8 @@
         android:id="@+id/player_two_name"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="164dp"
-        android:layout_marginBottom="24dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/player_two_name_edit_text"

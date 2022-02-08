@@ -31,10 +31,10 @@ User Story:
 
     - Implement Basic Nav functionality [X - 2/3/22]
 
-    - Resolve Gradle issues [X - 2/5/22]
+    - Resolve Gradle issues [X - 2/7/22]
 
     - Implement navigation to test fragments/animations including start and end game buttons and
-    navhostfragment code in MainActivity
+    navhostfragment code in MainActivity [X - 2/8/22]
 
     - Add Live Arg Bundles to pass player names to navigation
 
