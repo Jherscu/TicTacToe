@@ -87,8 +87,8 @@ class NavigationTest {
 
         // w/ Hamcrest
         assertThat("Navigation to GameFragment failed",
-            R.id.gameFragment,
-            `is`(navController.currentDestination?.id))
+            navController.currentDestination?.id,
+            `is`(R.id.gameFragment))
     }
 
     @Test
@@ -100,7 +100,7 @@ class NavigationTest {
             .perform(click())
 
         /* w/ JUnit
-        
+
         assertEquals(
             "Navigation to LandingFragment failed",
             R.id.landingFragment,
@@ -109,7 +109,7 @@ class NavigationTest {
 
         // w/ Hamcrest
         assertThat("Navigation to GameFragment failed",
-            R.id.landingFragment,
-            `is`(navController.currentDestination?.id))
+            navController.currentDestination?.id,
+            `is`(R.id.landingFragment))
     }
 }
