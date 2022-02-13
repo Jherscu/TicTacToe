@@ -58,9 +58,6 @@ class GameFragment : Fragment() {
                 navigateToHome()
             }
         }
-
-        Toast.makeText(this.context, viewModel.playerOneName.value, Toast.LENGTH_SHORT).show()
-        Toast.makeText(this.context, viewModel.playerTwoName.value, Toast.LENGTH_LONG).show()
     }
 
     /**

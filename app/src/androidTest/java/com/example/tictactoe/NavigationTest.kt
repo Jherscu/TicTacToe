@@ -44,6 +44,27 @@ class NavigationTest {
 
     }
 
+    // Extracts initialization of Game fragment to use in multiple tests
+    private fun gameFragmentInit() {
+        // Frame args as safe args object and pass them to init
+        val args = GameFragmentArgs("X", "O")
+        val bundle = args.toBundle()
+
+        init(
+            scenario = launchFragmentInContainer<GameFragment>(
+                themeResId = THEME,
+                fragmentArgs = bundle
+            )
+        )
+
+        // Ensure that the NavController is set to the expected destination
+        // using the ID from your navigation graph associated with GameFragment
+        runOnUiThread {
+            // Just like setGraph(), this needs to be called on the main thread
+            navController.setCurrentDestination(R.id.gameFragment, bundle)
+        }
+    }
+
     @Test
     fun landingToGameFragmentTest() {
 
@@ -63,23 +84,7 @@ class NavigationTest {
     @Test
     fun gameToLandingFragmentTest() {
 
-        // Frame args as safe args object and pass them to init
-        val args = GameFragmentArgs("X", "O")
-        val bundle = args.toBundle()
-
-        init(
-            scenario = launchFragmentInContainer<GameFragment>(
-                themeResId = THEME,
-                fragmentArgs = bundle
-            )
-        )
-
-        // Ensure that the NavController is set to the expected destination
-        // using the ID from your navigation graph associated with GameFragment
-        runOnUiThread {
-            // Just like setGraph(), this needs to be called on the main thread
-            navController.setCurrentDestination(R.id.gameFragment, bundle)
-        }
+        gameFragmentInit()
 
         onView(withId(R.id.button_end_game))
             .perform(click())
