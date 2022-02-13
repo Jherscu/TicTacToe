@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.tictactoe.databinding.FragmentLandingBinding
 
@@ -46,10 +47,23 @@ class LandingFragment : Fragment() {
     }
 
     /**
+     * Creates action to be used by [navigateToGame]
+     *
+     * @return [LandingFragmentDirections.actionLandingFragmentToGameFragment]
+     */
+    private fun createActionFromSafeArgs(): NavDirections {
+        // Passes contents of name edit texts as names
+        // If the names haven't been filled out, it returns default values
+        return LandingFragmentDirections.actionLandingFragmentToGameFragment(
+            binding.playerOneNameEditText.text.toString().ifEmpty { "X" },
+            binding.playerTwoNameEditText.text.toString().ifEmpty { "O" })
+    }
+
+    /**
      * Navigates from [LandingFragment] to [GameFragment]
      */
     private fun navigateToGame() {
-        findNavController().navigate(LandingFragmentDirections.actionLandingFragmentToGameFragment())
+        findNavController().navigate(createActionFromSafeArgs())
     }
 
     // Resets binding object

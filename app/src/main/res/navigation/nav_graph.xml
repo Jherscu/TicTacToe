@@ -15,6 +15,14 @@
             app:exitAnim="@android:anim/fade_out"
             app:popUpTo="@id/landingFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="playerOneName"
+            android:defaultValue="X"
+            app:argType="string" />
+        <argument
+            android:name="playerTwoName"
+            android:defaultValue="O"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/landingFragment"
