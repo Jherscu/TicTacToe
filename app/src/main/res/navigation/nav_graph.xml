@@ -17,9 +17,11 @@
             app:popUpToInclusive="true" />
         <argument
             android:name="playerOneName"
+            android:defaultValue="X"
             app:argType="string" />
         <argument
             android:name="playerTwoName"
+            android:defaultValue="O"
             app:argType="string" />
     </fragment>
     <fragment

@@ -11,8 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.tictactoe.databinding.FragmentGameBinding
 import com.example.tictactoe.model.TicTacToeViewModel
-import com.google.android.material.snackbar.BaseTransientBottomBar
-import kotlin.time.Duration
 
 
 /**
@@ -29,6 +27,7 @@ class GameFragment : Fragment() {
     // Declare outside of onCreateView() so binding can be accessed throughout
     // the whole fragment
     private var _binding: FragmentGameBinding? = null
+
     // This property is only safe to call between onCreateView() and onDestroyView()
     private val binding get() = _binding!!
 

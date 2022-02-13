@@ -18,6 +18,7 @@ class LandingFragment : Fragment() {
     // Declare outside of onCreateView() so binding can be accessed throughout
     // the whole fragment
     private var _binding: FragmentLandingBinding? = null
+
     // This property is only safe to call between onCreateView() and onDestroyView()
     private val binding: FragmentLandingBinding get() = _binding!!
 
@@ -50,7 +51,7 @@ class LandingFragment : Fragment() {
      *
      * @return [LandingFragmentDirections.actionLandingFragmentToGameFragment]
      */
-    private fun createActionFromSafeArgs() : NavDirections {
+    private fun createActionFromSafeArgs(): NavDirections {
         // Passes contents of name edit texts as names
         // If the names haven't been filled out, it returns default values
         return LandingFragmentDirections.actionLandingFragmentToGameFragment(
