@@ -8,19 +8,22 @@ import androidx.navigation.testing.TestNavHostController
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.LargeTest
 import androidx.test.internal.runner.junit4.statement.UiThreadStatement.runOnUiThread
 import com.example.tictactoe.ui.GameFragment
 import com.example.tictactoe.ui.GameFragmentArgs
 import com.example.tictactoe.ui.LandingFragment
-import org.junit.Assert.assertEquals
+import org.hamcrest.CoreMatchers.`is`
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 
 const val THEME = R.style.Theme_TicTacToe
 
-@RunWith(JUnit4::class)
+@RunWith(AndroidJUnit4::class)
+@LargeTest
 class NavigationTest {
 
     // Declare navController at top level so it can be accessed from any test in the class
@@ -74,11 +77,17 @@ class NavigationTest {
         onView(withId(R.id.button_start_game))
             .perform(click())
 
-        assertEquals(
-            "Navigation to GameFragment failed",
+        // w/ JUnit
+        // assertEquals(
+        //     "Navigation to GameFragment failed",
+        //     R.id.gameFragment,
+        //     navController.currentDestination?.id
+        // )
+
+        // w/ Hamcrest
+        assertThat("Navigation to GameFragment failed",
             R.id.gameFragment,
-            navController.currentDestination?.id
-        )
+            `is`(navController.currentDestination?.id))
     }
 
     @Test
@@ -89,10 +98,16 @@ class NavigationTest {
         onView(withId(R.id.button_end_game))
             .perform(click())
 
-        assertEquals(
-            "Navigation to LandingFragment failed",
+        // w/ JUnit
+        // assertEquals(
+        //     "Navigation to LandingFragment failed",
+        //     R.id.landingFragment,
+        //     navController.currentDestination?.id
+        // )
+
+        // w/ Hamcrest
+        assertThat("Navigation to GameFragment failed",
             R.id.landingFragment,
-            navController.currentDestination?.id
-        )
+            `is`(navController.currentDestination?.id))
     }
 }
