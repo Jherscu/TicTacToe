@@ -36,7 +36,7 @@ User Story:
     - Implement navigation to test fragments/animations including start and end game buttons and
     navhostfragment code in MainActivity [X - 2/8/22]
 
-    - Add Live Arg Bundles to pass player names to navigation
+    - Add Live Arg Bundles to pass player names to navigation [X - 2/13/22]
 
     - Tests / Skeletal outline of functions
 
