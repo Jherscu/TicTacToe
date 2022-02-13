@@ -77,12 +77,13 @@ class NavigationTest {
         onView(withId(R.id.button_start_game))
             .perform(click())
 
-        // w/ JUnit
-        // assertEquals(
-        //     "Navigation to GameFragment failed",
-        //     R.id.gameFragment,
-        //     navController.currentDestination?.id
-        // )
+        /* w/ JUnit
+
+        assertEquals(
+            "Navigation to GameFragment failed",
+            R.id.gameFragment,
+            navController.currentDestination?.id
+        ) */
 
         // w/ Hamcrest
         assertThat("Navigation to GameFragment failed",
@@ -98,12 +99,13 @@ class NavigationTest {
         onView(withId(R.id.button_end_game))
             .perform(click())
 
-        // w/ JUnit
-        // assertEquals(
-        //     "Navigation to LandingFragment failed",
-        //     R.id.landingFragment,
-        //     navController.currentDestination?.id
-        // )
+        /* w/ JUnit
+        
+        assertEquals(
+            "Navigation to LandingFragment failed",
+            R.id.landingFragment,
+            navController.currentDestination?.id
+        ) */
 
         // w/ Hamcrest
         assertThat("Navigation to GameFragment failed",
