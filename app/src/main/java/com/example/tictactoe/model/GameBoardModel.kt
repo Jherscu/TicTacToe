@@ -1,33 +1,21 @@
 package com.example.tictactoe.model
 
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-// A conscious decision has been made to use StateFlow in this area vs
-// the LiveData used in the viewModel prior to writing this.
-// I want to practice using both in this test app.
 /**
- * Singleton of Game Board with the ability to:
- * - Reset state
- * - Write to backing property
- * - Emit values on backing property changes
+ * Interface of the game board that can be overridden for
+ * implementation or testing purposes.
  */
-object GameBoardModel {
-    // Creates backing property for gameBoard: making it read-only
-    private lateinit var _gameBoard: MutableList<MutableList<String>>
-    // Tracks changes to game board within a state flow: automatically emitting results
-    val gameBoard: StateFlow<List<List<String>>> = MutableStateFlow(_gameBoard)
+interface GameBoardModel {
+    /**
+     * Instance of game board
+     */
+    val gameBoard: StateFlow<List<List<String>>>
 
     /**
      * Initializes and later resets the state of the game board
      */
-    fun resetState() {
-        _gameBoard = mutableListOf(
-            mutableListOf("","",""),
-            mutableListOf("","",""),
-            mutableListOf("","","")
-        )
-    }
+    fun resetState()
 
     /**
      * Marks either an "X" or "O" on the game board
@@ -38,7 +26,5 @@ object GameBoardModel {
      *
      * @param symbol Either the "X" or "O"
      */
-    fun addSymbol(x: Int, y: Int, symbol: String) {
-        _gameBoard[x][y] = symbol
-    }
+    fun addSymbol(x: Int, y: Int, symbol: String)
 }
