@@ -3,9 +3,6 @@ package com.example.tictactoe.model
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-// A conscious decision has been made to use StateFlow in this area vs
-// the LiveData used in the viewModel prior to writing this.
-// I want to practice using both in this test app.
 /**
  * Singleton of Game Board, extending [GameBoardModel] interface, with the ability to:
  * - Reset state

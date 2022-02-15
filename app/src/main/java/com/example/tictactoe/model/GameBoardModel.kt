@@ -2,6 +2,9 @@ package com.example.tictactoe.model
 
 import kotlinx.coroutines.flow.StateFlow
 
+// A conscious decision has been made to use StateFlow in this area vs
+// the LiveData used in the viewModel prior to writing this.
+// I want to practice using both in this test app.
 /**
  * Interface of the game board that can be overridden for
  * implementation or testing purposes.
