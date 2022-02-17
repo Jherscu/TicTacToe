@@ -75,7 +75,8 @@ class TicTacToeViewModel : ViewModel() {
             // Column 1
             !(GameBoardPart.COLUMN_LEFT.part.contains("")) -> {
                 if (GameBoardPart.COLUMN_LEFT.part == GameBoardPart.BOX_TOP_LEFT.part) {
-                    announceWinner(GameBoardPart.BOX_TOP_LEFT.part.toString())
+                    // Convert set of single box to list to allow access to contained string
+                    announceWinner(GameBoardPart.BOX_TOP_LEFT.part.toList()[0])
                     return true
                 }
                 false
@@ -84,7 +85,8 @@ class TicTacToeViewModel : ViewModel() {
             // Column 2
             !(GameBoardPart.COLUMN_MIDDLE.part.contains("")) -> {
                 if (GameBoardPart.COLUMN_MIDDLE.part == GameBoardPart.BOX_CENTER.part) {
-                    announceWinner(GameBoardPart.BOX_CENTER.part.toString())
+                    // Convert set of single box to list to allow access to contained string
+                    announceWinner(GameBoardPart.BOX_CENTER.part.toList()[0])
                     return true
                 }
                 false
@@ -93,7 +95,8 @@ class TicTacToeViewModel : ViewModel() {
             // Column 3
             !(GameBoardPart.COLUMN_RIGHT.part.contains("")) -> {
                 if (GameBoardPart.COLUMN_RIGHT.part == GameBoardPart.BOX_BOTTOM_RIGHT.part) {
-                    announceWinner(GameBoardPart.BOX_BOTTOM_RIGHT.part.toString())
+                    // Convert set of single box to list to allow access to contained string
+                    announceWinner(GameBoardPart.BOX_BOTTOM_RIGHT.part.toList()[0])
                     return true
                 }
                 false
@@ -106,7 +109,8 @@ class TicTacToeViewModel : ViewModel() {
             // Row 1
             !(GameBoardPart.ROW_TOP.part.contains("")) -> {
                 if (GameBoardPart.ROW_TOP.part == GameBoardPart.BOX_TOP_LEFT.part) {
-                    announceWinner(GameBoardPart.BOX_TOP_LEFT.part.toString())
+                    // Convert set of single box to list to allow access to contained string
+                    announceWinner(GameBoardPart.BOX_TOP_LEFT.part.toList()[0])
                     return true
                 }
                 false
@@ -115,7 +119,8 @@ class TicTacToeViewModel : ViewModel() {
             // Row 2
             !(GameBoardPart.ROW_MIDDLE.part.contains("")) -> {
                 if (GameBoardPart.ROW_MIDDLE.part == GameBoardPart.BOX_CENTER.part) {
-                    announceWinner(GameBoardPart.BOX_CENTER.part.toString())
+                    // Convert set of single box to list to allow access to contained string
+                    announceWinner(GameBoardPart.BOX_CENTER.part.toList()[0])
                     return true
                 }
                 false
@@ -124,7 +129,8 @@ class TicTacToeViewModel : ViewModel() {
             // Row 3
             !(GameBoardPart.ROW_BOTTOM.part.contains("")) -> {
                 if (GameBoardPart.ROW_BOTTOM.part == setOf(GameBoardPart.BOX_BOTTOM_RIGHT.part)) {
-                    announceWinner(GameBoardPart.BOX_BOTTOM_RIGHT.part.toString())
+                    // Convert set of single box to list to allow access to contained string
+                    announceWinner(GameBoardPart.BOX_BOTTOM_RIGHT.part.toList()[0])
                     return true
                 }
                 false
@@ -137,7 +143,8 @@ class TicTacToeViewModel : ViewModel() {
             // Top left to bottom right
             !(GameBoardPart.DIAGONAL_TOP_LEFT_TO_BOTTOM_RIGHT.part.contains("")) -> {
                 if (GameBoardPart.DIAGONAL_TOP_LEFT_TO_BOTTOM_RIGHT.part == GameBoardPart.BOX_CENTER.part) {
-                    announceWinner(GameBoardPart.BOX_CENTER.part.toString())
+                    // Convert set of single box to list to allow access to contained string
+                    announceWinner(GameBoardPart.BOX_CENTER.part.toList()[0])
                     return true
                 }
                 false
@@ -146,7 +153,8 @@ class TicTacToeViewModel : ViewModel() {
             // Top right to bottom left
             !(GameBoardPart.DIAGONAL_TOP_RIGHT_TO_BOTTOM_LEFT.part.contains("")) -> {
                 if (GameBoardPart.DIAGONAL_TOP_RIGHT_TO_BOTTOM_LEFT.part == GameBoardPart.BOX_CENTER.part) {
-                    announceWinner(GameBoardPart.BOX_CENTER.part.toString())
+                    // Convert set of single box to list to allow access to contained string
+                    announceWinner(GameBoardPart.BOX_CENTER.part.toList()[0])
                     return true
                 }
                 false
