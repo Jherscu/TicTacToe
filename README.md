@@ -38,9 +38,7 @@ User Story:
 
     - Add Live Arg Bundles to pass player names to navigation [X - 2/13/22]
 
-    - Tests / Skeletal outline of functions
-
-    - Game logic
+    - Tests / Game logic
 
     - Add dialogs
 
