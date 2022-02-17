@@ -1,13 +1,7 @@
 /* Copyright 2019 Google LLC.
    SPDX-License-Identifier: Apache-2.0 */
 
-/*
- * The code in this file was originally written by: Jose Alcérreca @ Google
- *
- * https://medium.com/androiddevelopers/unit-testing-livedata-and-other-common-observability-problems-bb477262eb04
- */
-
-package com.example.tictactoe
+package com.example.tictactoe.util
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
