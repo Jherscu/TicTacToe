@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
  * - Write to backing property
  * - Emit values on backing property changes
  */
-object GameBoardModelImpl: GameBoardModel {
+object GameBoardModelImpl : GameBoardModel {
     // Creates backing property for gameBoard: making it read-only
     private lateinit var _gameBoard: MutableStateFlow<MutableList<MutableList<String>>>
     // Tracks changes to game board within a state flow: automatically emitting results
