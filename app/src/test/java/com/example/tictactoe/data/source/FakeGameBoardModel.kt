@@ -10,30 +10,34 @@ class FakeGameBoardModel : GameBoardModel {
     // Direction class for use in TestWin() to test all winning patterns
     sealed class Direction
 
-    open class AxialDirection: Direction()
+    open class AxialDirection : Direction()
 
-    open class DiagonalDirection: Direction()
+    open class DiagonalDirection : Direction()
 
-    class Vertical: AxialDirection()
+    class Vertical : AxialDirection()
 
-    class Horizontal: AxialDirection()
+    class Horizontal : AxialDirection()
 
-    class TopLeftToBottomRight: DiagonalDirection()
+    class TopLeftToBottomRight : DiagonalDirection()
 
-    class TopRightToBottomLeft: DiagonalDirection()
+    class TopRightToBottomLeft : DiagonalDirection()
 
-    private lateinit var _gameBoard: MutableStateFlow<MutableList<MutableList<String>>>
+    private val _gameBoard = MutableStateFlow(
+        mutableListOf(
+            mutableListOf("", "", ""),
+            mutableListOf("", "", ""),
+            mutableListOf("", "", "")
+        )
+    )
 
     override val gameBoard: StateFlow<List<List<String>>> = _gameBoard
 
     override fun resetState() {
-        _gameBoard = MutableStateFlow(
-            mutableListOf(
-                mutableListOf("","",""),
-                mutableListOf("","",""),
-                mutableListOf("","","")
-            )
-        )
+        for (list in _gameBoard.value) {
+            list[0] = ""
+            list[1] = ""
+            list[2] = ""
+        }
     }
 
     /**
@@ -55,15 +59,17 @@ class FakeGameBoardModel : GameBoardModel {
      */
     fun TestWin(x: Int?, y: Int?, direction: Direction) {
         when (direction) {
-            is Horizontal -> x?.apply { testWinHorizontal(x) } ?: throw IllegalArgumentException("Must declare X")
-            is Vertical -> y?.apply { testWinVertical(y) } ?: throw IllegalArgumentException("Must declare Y")
+            is Horizontal -> x?.apply { testWinHorizontal(x) }
+                ?: throw IllegalArgumentException("Must declare X")
+            is Vertical -> y?.apply { testWinVertical(y) }
+                ?: throw IllegalArgumentException("Must declare Y")
             is DiagonalDirection -> testWinDiagonal(direction)
             else -> throw IllegalArgumentException("Please declare valid direction")
         }
     }
 
     private fun testWinHorizontal(x: Int) {
-        _gameBoard.value[x] = mutableListOf("X","X","X")
+        _gameBoard.value[x] = mutableListOf("X", "X", "X")
     }
 
     private fun testWinVertical(y: Int) {

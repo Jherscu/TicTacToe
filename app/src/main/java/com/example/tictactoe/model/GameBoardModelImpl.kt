@@ -11,18 +11,23 @@ import kotlinx.coroutines.flow.StateFlow
  */
 object GameBoardModelImpl : GameBoardModel {
     // Creates backing property for gameBoard: making it read-only
-    private lateinit var _gameBoard: MutableStateFlow<MutableList<MutableList<String>>>
+    private val _gameBoard = MutableStateFlow(
+        mutableListOf(
+            mutableListOf("", "", ""),
+            mutableListOf("", "", ""),
+            mutableListOf("", "", "")
+        )
+    )
+
     // Tracks changes to game board within a state flow: automatically emitting results
     override val gameBoard: StateFlow<List<List<String>>> = _gameBoard
 
     override fun resetState() {
-        _gameBoard = MutableStateFlow(
-            mutableListOf(
-                mutableListOf("","",""),
-                mutableListOf("","",""),
-                mutableListOf("","","")
-            )
-        )
+        for (list in _gameBoard.value) {
+            list[0] = ""
+            list[1] = ""
+            list[2] = ""
+        }
     }
 
     override fun addSymbol(x: Int, y: Int, symbol: String) {
