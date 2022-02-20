@@ -2,6 +2,15 @@
     <string name="app_name">TicTacToe</string>
     <string name="board">Tic Tac Toe Board</string>
     <string name="lets_play">Lets Play!</string>
+    <string name="u_l">Upper Left</string>
+    <string name="u_c">Upper Center</string>
+    <string name="u_r">Upper Right</string>
+    <string name="c_l">Center Left</string>
+    <string name="c">Center</string>
+    <string name="c_r">Center Right</string>
+    <string name="l_l">Lower Left</string>
+    <string name="l_c">Lower Center</string>
+    <string name="l_r">Lower Right</string>
     <string name="u_l_empty">Upper Left Box: Empty</string>
     <string name="u_c_empty">Upper Center Box: Empty</string>
     <string name="u_r_empty">Upper Right Box: Empty</string>
@@ -11,7 +20,8 @@
     <string name="l_l_empty">Lower Left Box: Empty</string>
     <string name="l_c_empty">Lower Center Box: Empty</string>
     <string name="l_r_empty">Lower Right Box: Empty</string>
-    <string name="content_description_format">$1s Box: $2s</string>
+    <string name="content_description_format">%1$s Box: %2$s</string>
+    <string name="invalid_move">Please pick an empty square!</string>
     <string name="end_game">END GAME</string>
     <string name="start_game">START GAME</string>
     <string name="player_one_name">Player 1: X</string>
