@@ -86,9 +86,11 @@ class NavigationTest {
         ) */
 
         // w/ Hamcrest
-        assertThat("Navigation to GameFragment failed",
+        assertThat(
+            "Navigation to GameFragment failed",
             navController.currentDestination?.id,
-            `is`(R.id.gameFragment))
+            `is`(R.id.gameFragment)
+        )
     }
 
     @Test
@@ -108,8 +110,10 @@ class NavigationTest {
         ) */
 
         // w/ Hamcrest
-        assertThat("Navigation to GameFragment failed",
+        assertThat(
+            "Navigation to GameFragment failed",
             navController.currentDestination?.id,
-            `is`(R.id.landingFragment))
+            `is`(R.id.landingFragment)
+        )
     }
 }
