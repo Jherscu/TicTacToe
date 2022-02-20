@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_500" >
+    android:background="@color/purple_500">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/player_turn_view"

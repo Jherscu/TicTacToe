@@ -3,7 +3,6 @@ package com.example.tictactoe.data.source
 import com.example.tictactoe.model.GameBoardModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import java.lang.IllegalArgumentException
 
 class FakeGameBoardModel : GameBoardModel {
 
