@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.tictactoe.R
 import com.example.tictactoe.databinding.FragmentGameBinding
+import com.example.tictactoe.model.GameBoardModelImpl
 import com.example.tictactoe.model.TicTacToeViewModel
 
 
@@ -30,6 +32,8 @@ class GameFragment : Fragment() {
 
     // This property is only safe to call between onCreateView() and onDestroyView()
     private val binding get() = _binding!!
+
+    private val gameBoard = GameBoardModelImpl.gameBoard.value
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +61,42 @@ class GameFragment : Fragment() {
             buttonEndGame.setOnClickListener {
                 navigateToHome()
             }
+
+            gridUpperLeft.setOnClickListener {
+                clickBox(0, 0, it)
+            }
+
+            gridUpperCenter.setOnClickListener {
+                clickBox(0, 1, it)
+            }
+
+            gridUpperRight.setOnClickListener {
+                clickBox(0, 2, it)
+            }
+
+            gridCenterLeft.setOnClickListener {
+                clickBox(1, 0, it)
+            }
+
+            gridCenter.setOnClickListener {
+                clickBox(1, 1, it)
+            }
+
+            gridCenterRight.setOnClickListener {
+                clickBox(1, 2, it)
+            }
+
+            gridLowerLeft.setOnClickListener {
+                clickBox(2, 0, it)
+            }
+
+            gridLowerCenter.setOnClickListener {
+                clickBox(2, 1, it)
+            }
+
+            gridLowerRight.setOnClickListener {
+                clickBox(2, 2, it)
+            }
         }
     }
 
@@ -66,6 +106,43 @@ class GameFragment : Fragment() {
     private fun navigateToHome() {
         findNavController().navigate(GameFragmentDirections.actionGameFragmentToLandingFragment())
     }
+
+    /**
+     * When box is clicked by the user:
+     *   - Checks if the move is valid
+     *      - If not: A warning Toast is made
+     *      - If so: Updates the game board model and UI with the new
+     *        value and switches the player in the viewModel
+     *
+     * @param x X axis value on the grid
+     *
+     * @param y Y axis value on the grid
+     *
+     * @param view The associated view being clicked on by the player
+     */
+    private fun clickBox(x: Int, y: Int, view: View) {
+        viewModel.run {
+            if (this.moveIsValid(gameBoard[x][y])) {
+
+                this.displaySymbol(x, y, view, getString(R.string.u_l)) // make string dynamic
+
+                this.swapCurrentPlayer()
+
+                // Checks game board for win
+                this.isThreeInARow()
+            } else {
+                Toast.makeText(
+                    this@GameFragment.context,
+                    R.string.invalid_move,
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+            }
+        }
+    }
+
+    // TODO( If viewModel.isWin == true, create dialog. Announce winning player.
+    //  opt 1 end game return to home, opt 2 reset state start over )
 
     // Resets binding object
     override fun onDestroyView() {
