@@ -52,64 +52,55 @@
                 android:id="@+id/grid_upper_left"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:layout_margin="22dp"
-                android:contentDescription="@string/u_l_empty" />
+                android:layout_margin="22dp" />
 
             <ImageView
                 android:id="@+id/grid_upper_center"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:layout_margin="22dp"
-                android:contentDescription="@string/u_c_empty" />
+                android:layout_margin="22dp" />
 
             <ImageView
                 android:id="@+id/grid_upper_right"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:layout_margin="22dp"
-                android:contentDescription="@string/u_r_empty" />
+                android:layout_margin="22dp" />
 
             <ImageView
                 android:id="@+id/grid_center_left"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:layout_margin="22dp"
-                android:contentDescription="@string/c_l_empty" />
+                android:layout_margin="22dp" />
 
             <ImageView
                 android:id="@+id/grid_center"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:layout_margin="22dp"
-                android:contentDescription="@string/c_empty" />
+                android:layout_margin="22dp" />
 
             <ImageView
                 android:id="@+id/grid_center_right"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:layout_margin="22dp"
-                android:contentDescription="@string/c_r_empty" />
+                android:layout_margin="22dp" />
 
             <ImageView
                 android:id="@+id/grid_lower_left"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:layout_margin="22dp"
-                android:contentDescription="@string/l_l_empty" />
+                android:layout_margin="22dp" />
 
             <ImageView
                 android:id="@+id/grid_lower_center"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:layout_margin="22dp"
-                android:contentDescription="@string/l_c_empty" />
+                android:layout_margin="22dp" />
 
             <ImageView
                 android:id="@+id/grid_lower_right"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:layout_margin="22dp"
-                android:contentDescription="@string/l_r_empty" />
+                android:layout_margin="22dp" />
 
         </GridLayout>
 

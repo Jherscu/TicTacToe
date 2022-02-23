@@ -11,15 +11,7 @@
     <string name="l_l">Lower Left</string>
     <string name="l_c">Lower Center</string>
     <string name="l_r">Lower Right</string>
-    <string name="u_l_empty">Upper Left Box: Empty</string>
-    <string name="u_c_empty">Upper Center Box: Empty</string>
-    <string name="u_r_empty">Upper Right Box: Empty</string>
-    <string name="c_l_empty">Center Left Box: Empty</string>
-    <string name="c_empty">Center Box: Empty</string>
-    <string name="c_r_empty">Center Right Box: Empty</string>
-    <string name="l_l_empty">Lower Left Box: Empty</string>
-    <string name="l_c_empty">Lower Center Box: Empty</string>
-    <string name="l_r_empty">Lower Right Box: Empty</string>
+    <string name="empty">Empty</string>
     <string name="content_description_format">%1$s Box: %2$s</string>
     <string name="invalid_move">Please pick an empty square!</string>
     <string name="end_game">END GAME</string>

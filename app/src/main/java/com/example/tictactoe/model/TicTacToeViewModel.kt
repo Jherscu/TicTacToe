@@ -1,13 +1,16 @@
 package com.example.tictactoe.model
 
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.viewModelScope
 import com.example.tictactoe.R
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.lang.IllegalArgumentException
+import kotlin.properties.Delegates
 
 
 /**
@@ -31,8 +34,16 @@ class TicTacToeViewModel : ViewModel() {
     val winningPlayer: LiveData<String> = _winningPlayer
 
     // Tracks whose turn it is to play
-    private val _currentPlayer = MutableLiveData<String>("X")
+    private val _currentPlayer = MutableLiveData("X")
     val currentPlayer: LiveData<String> = _currentPlayer
+
+    private val _contentDescriptions = MutableLiveData<MutableMap<String, String>>()
+    val contentDescriptions: LiveData<Map<String, String>> =
+        Transformations.map(_contentDescriptions) { mutableMap ->
+            mutableMap.toMap()
+        }
+
+    val gameBoard = GameBoardModelImpl.gameBoard.asLiveData()
 
     init {
         GameBoardModelImpl.resetState()
@@ -177,12 +188,11 @@ class TicTacToeViewModel : ViewModel() {
      *
      * @param boardValue Value of space in game board
      */
-    private fun getIcon(boardValue: String): Int {
+    fun getIcon(boardValue: String?): Int {
         return when (boardValue) {
             "X" -> R.drawable.icon_x
             "O" -> R.drawable.icon_o
-            else ->
-                throw IllegalArgumentException("Board Id must be X or O within when statement")
+            else -> throw IllegalArgumentException("Must pass valid symbol")
         }
     }
 
@@ -191,43 +201,34 @@ class TicTacToeViewModel : ViewModel() {
      *
      * @param boardValue Value of space in game board
      */
-    fun moveIsValid(boardValue: String): Boolean = boardValue == ""
+    private fun moveIsValid(boardValue: String): Boolean = boardValue == ""
 
     /**
      * Swaps the value of the selected player.
      */
-    fun swapCurrentPlayer() =
+    private fun swapCurrentPlayer() =
         if (_currentPlayer.value == "X") _currentPlayer.value = "O" else _currentPlayer.value = "X"
 
 
     /**
-     * Displays the symbol for the selected space in both the game board object
-     * and the UI.
+     * When box is clicked by the user:
+     *   - Checks if the move is valid
+     *      - If not: return false
+     *      - If so: Updates the game board model with the new
+     *        value and switches the player in the viewModel
      *
      * @param x X axis value on the grid
      *
      * @param y Y axis value on the grid
-     *
-     * @param view The associated view being clicked on by the player
-     *
-     * @param boxName The box's position in the grid. i.e. "Upper Left"
      */
-    fun displaySymbol(x: Int, y: Int, view: View, boxName: String) {
-        val currentPlayer = currentPlayer.value!!
-
-        GameBoardModelImpl.addSymbol(x, y, currentPlayer)
-
-        view.apply {
-            viewModelScope.launch { // Launches on Dispatchers.Main
-                GameBoardModelImpl.gameBoard.collect { // Collects StateFlow
-                    setBackgroundResource(getIcon(it[x][y])) // Sets background image with value
-                }
+    fun clickBox(x: Int, y: Int): Boolean {
+        return if (moveIsValid(gameBoard.value!![x][y])) {
+                GameBoardModelImpl.addSymbol(x, y, currentPlayer.value.toString())
+                swapCurrentPlayer()
+                true
+            } else {
+                false
             }
-            contentDescription = context.getString(
-                R.string.content_description_format,
-                boxName,
-                currentPlayer
-            )
-        }
     }
+
 }

@@ -11,9 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.tictactoe.R
 import com.example.tictactoe.databinding.FragmentGameBinding
-import com.example.tictactoe.model.GameBoardModelImpl
 import com.example.tictactoe.model.TicTacToeViewModel
-
 
 /**
  * [GameFragment] is the fragment where the Tic Tac Toe game takes place.
@@ -32,8 +30,6 @@ class GameFragment : Fragment() {
 
     // This property is only safe to call between onCreateView() and onDestroyView()
     private val binding get() = _binding!!
-
-    private val gameBoard = GameBoardModelImpl.gameBoard.value
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,46 +53,184 @@ class GameFragment : Fragment() {
         viewModel.updatePlayerName(1, args.playerOneName)
         viewModel.updatePlayerName(2, args.playerTwoName)
 
+        viewModel.gameBoard.observe(viewLifecycleOwner) {
+
+            with (it[0][0]) {
+                updateView(binding.gridUpperLeft, this)
+            }
+
+            with (it[0][1]) {
+                updateView(binding.gridUpperCenter, this)
+            }
+
+            with (it[0][2]) {
+                updateView(binding.gridUpperRight, this)
+            }
+
+            with (it[1][0]) {
+                updateView(binding.gridCenterLeft, this)
+            }
+
+            with (it[1][1]) {
+                updateView(binding.gridCenter, this)
+            }
+
+            with (it[1][2]) {
+                updateView(binding.gridCenterRight, this)
+            }
+
+            with (it[2][0]) {
+                updateView(binding.gridLowerLeft, this)
+            }
+
+            with (it[2][1]) {
+                updateView(binding.gridLowerCenter, this)
+            }
+
+            with (it[2][2]) {
+                updateView(binding.gridLowerRight, this)
+            }
+        }
+
         binding.apply {
             buttonEndGame.setOnClickListener {
                 navigateToHome()
             }
 
             gridUpperLeft.setOnClickListener {
-                clickBox(0, 0, it)
+
+                // If the box has already been populated with a value
+                // return a warning toast
+                viewModel.clickBox(0, 0).toastWhenFalse()
+
+                // Checks game board for win
+                viewModel.isThreeInARow()
             }
 
             gridUpperCenter.setOnClickListener {
-                clickBox(0, 1, it)
+
+                // If the box has already been populated with a value
+                // return a warning toast
+                viewModel.clickBox(0, 1).toastWhenFalse()
+
+                // Checks game board for win
+                viewModel.isThreeInARow()
             }
 
             gridUpperRight.setOnClickListener {
-                clickBox(0, 2, it)
+
+                // If the box has already been populated with a value
+                // return a warning toast
+                viewModel.clickBox(0, 2).toastWhenFalse()
+
+                // Checks game board for win
+                viewModel.isThreeInARow()
             }
 
             gridCenterLeft.setOnClickListener {
-                clickBox(1, 0, it)
+
+                // If the box has already been populated with a value
+                // return a warning toast
+                viewModel.clickBox(1, 0).toastWhenFalse()
+
+                // Checks game board for win
+                viewModel.isThreeInARow()
             }
 
             gridCenter.setOnClickListener {
-                clickBox(1, 1, it)
+
+                // If the box has already been populated with a value
+                // return a warning toast
+                viewModel.clickBox(1, 1).toastWhenFalse()
+
+                // Checks game board for win
+                viewModel.isThreeInARow()
             }
 
             gridCenterRight.setOnClickListener {
-                clickBox(1, 2, it)
+
+                // If the box has already been populated with a value
+                // return a warning toast
+                viewModel.clickBox(1, 2).toastWhenFalse()
+
+                // Checks game board for win
+                viewModel.isThreeInARow()
             }
 
             gridLowerLeft.setOnClickListener {
-                clickBox(2, 0, it)
+
+                // If the box has already been populated with a value
+                // return a warning toast
+                viewModel.clickBox(2, 0).toastWhenFalse()
+
+                // Checks game board for win
+                viewModel.isThreeInARow()
             }
 
             gridLowerCenter.setOnClickListener {
-                clickBox(2, 1, it)
+
+                // If the box has already been populated with a value
+                // return a warning toast
+                viewModel.clickBox(2, 1).toastWhenFalse()
+
+                // Checks game board for win
+                viewModel.isThreeInARow()
             }
 
             gridLowerRight.setOnClickListener {
-                clickBox(2, 2, it)
+
+                // If the box has already been populated with a value
+                // return a warning toast
+                viewModel.clickBox(2, 2).toastWhenFalse()
+
+                // Checks game board for win
+                viewModel.isThreeInARow()
             }
+
+        }
+    }
+
+
+    private fun Boolean.toastWhenFalse() {
+        if (equals(false)) {
+            Toast.makeText(
+                requireContext(),
+                R.string.invalid_move,
+                Toast.LENGTH_SHORT
+            )
+                .show()
+        }
+    }
+
+    /**
+     *
+     */
+    private fun updatedContentDescription(view: View, symbol: String): String {
+        return getString(
+            R.string.content_description_format,
+            getString(getStringIdFromView(view)),
+            symbol
+        )
+    }
+
+    /**
+     *
+     */
+    private fun updateView(view: View, symbol: String) {
+
+        // Set image and descriptive content description if the space has been clicked by
+        // user and updated in gameBoardModelImpl
+        if (symbol != "") {
+            view.setBackgroundResource(viewModel.getIcon(symbol))
+            view.contentDescription = updatedContentDescription(view, symbol)
+        } else { // Set default content description
+
+            view.contentDescription = getString(
+                    R.string.content_description_format,
+                    getString(getStringIdFromView(view)),
+                    getString(R.string.empty)
+                )
+
         }
     }
 
@@ -108,36 +242,24 @@ class GameFragment : Fragment() {
     }
 
     /**
-     * When box is clicked by the user:
-     *   - Checks if the move is valid
-     *      - If not: A warning Toast is made
-     *      - If so: Updates the game board model and UI with the new
-     *        value and switches the player in the viewModel
+     * Correspond view with a string used to identify it in [TicTacToeViewModel.displaySymbol]
      *
-     * @param x X axis value on the grid
+     * @param view Valid tic tac toe space represented by an ImageView
      *
-     * @param y Y axis value on the grid
-     *
-     * @param view The associated view being clicked on by the player
+     * @return String Id for aforementioned space
      */
-    private fun clickBox(x: Int, y: Int, view: View) {
-        viewModel.run {
-            if (this.moveIsValid(gameBoard[x][y])) {
-
-                this.displaySymbol(x, y, view, getString(R.string.u_l)) // make string dynamic
-
-                this.swapCurrentPlayer()
-
-                // Checks game board for win
-                this.isThreeInARow()
-            } else {
-                Toast.makeText(
-                    this@GameFragment.context,
-                    R.string.invalid_move,
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-            }
+    private fun getStringIdFromView(view: View): Int {
+        return when (view) {
+            binding.gridUpperLeft -> R.string.u_l
+            binding.gridUpperCenter -> R.string.u_c
+            binding.gridUpperRight -> R.string.u_r
+            binding.gridCenterLeft -> R.string.c_l
+            binding.gridCenter -> R.string.c
+            binding.gridCenterRight -> R.string.c_r
+            binding.gridLowerLeft -> R.string.l_l
+            binding.gridLowerCenter -> R.string.l_c
+            binding.gridLowerRight -> R.string.l_r
+            else -> throw IllegalArgumentException("Must be a valid ImageView")
         }
     }
 

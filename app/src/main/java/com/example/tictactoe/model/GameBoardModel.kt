@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 // A conscious decision has been made to use StateFlow in this area vs
 // the LiveData used in the viewModel prior to writing this.
-// I want to practice using both in this test app.
+// LiveData should not be used outside the presentation layer.
 /**
  * Interface of the game board that can be overridden for
  * implementation or testing purposes.
