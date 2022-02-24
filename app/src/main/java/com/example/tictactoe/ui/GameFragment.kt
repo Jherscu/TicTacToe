@@ -53,44 +53,7 @@ class GameFragment : Fragment() {
         viewModel.updatePlayerName(1, args.playerOneName)
         viewModel.updatePlayerName(2, args.playerTwoName)
 
-        viewModel.gameBoard.observe(viewLifecycleOwner) {
-
-            with (it[0][0]) {
-                updateView(binding.gridUpperLeft, this)
-            }
-
-            with (it[0][1]) {
-                updateView(binding.gridUpperCenter, this)
-            }
-
-            with (it[0][2]) {
-                updateView(binding.gridUpperRight, this)
-            }
-
-            with (it[1][0]) {
-                updateView(binding.gridCenterLeft, this)
-            }
-
-            with (it[1][1]) {
-                updateView(binding.gridCenter, this)
-            }
-
-            with (it[1][2]) {
-                updateView(binding.gridCenterRight, this)
-            }
-
-            with (it[2][0]) {
-                updateView(binding.gridLowerLeft, this)
-            }
-
-            with (it[2][1]) {
-                updateView(binding.gridLowerCenter, this)
-            }
-
-            with (it[2][2]) {
-                updateView(binding.gridLowerRight, this)
-            }
-        }
+        observeGameBoard() // Used for initial construction/reconstruction of Fragment
 
         binding.apply {
             buttonEndGame.setOnClickListener {
@@ -102,6 +65,8 @@ class GameFragment : Fragment() {
                 // If the box has already been populated with a value
                 // return a warning toast
                 viewModel.clickBox(0, 0).toastWhenFalse()
+                // Observe state change and update views
+                observeGameBoard()
 
                 // Checks game board for win
                 viewModel.isThreeInARow()
@@ -112,6 +77,8 @@ class GameFragment : Fragment() {
                 // If the box has already been populated with a value
                 // return a warning toast
                 viewModel.clickBox(0, 1).toastWhenFalse()
+                // Observe state change and update views
+                observeGameBoard()
 
                 // Checks game board for win
                 viewModel.isThreeInARow()
@@ -122,6 +89,8 @@ class GameFragment : Fragment() {
                 // If the box has already been populated with a value
                 // return a warning toast
                 viewModel.clickBox(0, 2).toastWhenFalse()
+                // Observe state change and update views
+                observeGameBoard()
 
                 // Checks game board for win
                 viewModel.isThreeInARow()
@@ -132,6 +101,8 @@ class GameFragment : Fragment() {
                 // If the box has already been populated with a value
                 // return a warning toast
                 viewModel.clickBox(1, 0).toastWhenFalse()
+                // Observe state change and update views
+                observeGameBoard()
 
                 // Checks game board for win
                 viewModel.isThreeInARow()
@@ -142,6 +113,8 @@ class GameFragment : Fragment() {
                 // If the box has already been populated with a value
                 // return a warning toast
                 viewModel.clickBox(1, 1).toastWhenFalse()
+                // Observe state change and update views
+                observeGameBoard()
 
                 // Checks game board for win
                 viewModel.isThreeInARow()
@@ -152,6 +125,8 @@ class GameFragment : Fragment() {
                 // If the box has already been populated with a value
                 // return a warning toast
                 viewModel.clickBox(1, 2).toastWhenFalse()
+                // Observe state change and update views
+                observeGameBoard()
 
                 // Checks game board for win
                 viewModel.isThreeInARow()
@@ -162,6 +137,8 @@ class GameFragment : Fragment() {
                 // If the box has already been populated with a value
                 // return a warning toast
                 viewModel.clickBox(2, 0).toastWhenFalse()
+                // Observe state change and update views
+                observeGameBoard()
 
                 // Checks game board for win
                 viewModel.isThreeInARow()
@@ -172,6 +149,8 @@ class GameFragment : Fragment() {
                 // If the box has already been populated with a value
                 // return a warning toast
                 viewModel.clickBox(2, 1).toastWhenFalse()
+                // Observe state change and update views
+                observeGameBoard()
 
                 // Checks game board for win
                 viewModel.isThreeInARow()
@@ -182,6 +161,8 @@ class GameFragment : Fragment() {
                 // If the box has already been populated with a value
                 // return a warning toast
                 viewModel.clickBox(2, 2).toastWhenFalse()
+                // Observe state change and update views
+                observeGameBoard()
 
                 // Checks game board for win
                 viewModel.isThreeInARow()
@@ -190,7 +171,54 @@ class GameFragment : Fragment() {
         }
     }
 
+    /**
+     * Observe the state of the game board and update necessary views when they are acted upon.
+     */
+    private fun observeGameBoard() {
+        viewModel.gameBoard.observe(viewLifecycleOwner) {
 
+            with(it[0][0]) {
+                updateView(binding.gridUpperLeft, this)
+            }
+
+            with(it[0][1]) {
+                updateView(binding.gridUpperCenter, this)
+            }
+
+            with(it[0][2]) {
+                updateView(binding.gridUpperRight, this)
+            }
+
+            with(it[1][0]) {
+                updateView(binding.gridCenterLeft, this)
+            }
+
+            with(it[1][1]) {
+                updateView(binding.gridCenter, this)
+            }
+
+            with(it[1][2]) {
+                updateView(binding.gridCenterRight, this)
+            }
+
+            with(it[2][0]) {
+                updateView(binding.gridLowerLeft, this)
+            }
+
+            with(it[2][1]) {
+                updateView(binding.gridLowerCenter, this)
+            }
+
+            with(it[2][2]) {
+                updateView(binding.gridLowerRight, this)
+            }
+        }
+    }
+
+
+    /**
+     * Extension function that returns a warning toast for false values.
+     */
     private fun Boolean.toastWhenFalse() {
         if (equals(false)) {
             Toast.makeText(
@@ -203,7 +231,11 @@ class GameFragment : Fragment() {
     }
 
     /**
+     * Returns content description for a game board space reflecting which symbol it contains.
      *
+     * @param view The space on the game board
+     *
+     * @param symbol Either "X" or "O" depending on the player
      */
     private fun updatedContentDescription(view: View, symbol: String): String {
         return getString(
@@ -214,7 +246,11 @@ class GameFragment : Fragment() {
     }
 
     /**
+     * Set the image and content description for the selected view.
      *
+     * @param view The space on the game board
+     *
+     * @param symbol Either "X" or "O" depending on the player
      */
     private fun updateView(view: View, symbol: String) {
 
@@ -226,10 +262,10 @@ class GameFragment : Fragment() {
         } else { // Set default content description
 
             view.contentDescription = getString(
-                    R.string.content_description_format,
-                    getString(getStringIdFromView(view)),
-                    getString(R.string.empty)
-                )
+                R.string.content_description_format,
+                getString(getStringIdFromView(view)),
+                getString(R.string.empty)
+            )
 
         }
     }
@@ -242,9 +278,9 @@ class GameFragment : Fragment() {
     }
 
     /**
-     * Correspond view with a string used to identify it in [TicTacToeViewModel.displaySymbol]
+     * Correspond view with an identifying string used in the content description builder.
      *
-     * @param view Valid tic tac toe space represented by an ImageView
+     * @param view Valid game board space represented by an ImageView
      *
      * @return String Id for aforementioned space
      */

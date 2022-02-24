@@ -5,12 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.viewModelScope
 import com.example.tictactoe.R
-import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
-import kotlin.properties.Delegates
 
 
 /**
@@ -43,11 +39,11 @@ class TicTacToeViewModel : ViewModel() {
             mutableMap.toMap()
         }
 
-    val gameBoard = GameBoardModelImpl.gameBoard.asLiveData()
-
     init {
         GameBoardModelImpl.resetState()
     }
+
+    val gameBoard = GameBoardModelImpl.gameBoard.asLiveData()
 
     /**
      * Updates viewModel properties with safeArgs name input from
@@ -187,6 +183,8 @@ class TicTacToeViewModel : ViewModel() {
      * Retrieves necessary image to place in clicked space.
      *
      * @param boardValue Value of space in game board
+     *
+     * @return Resource Id for the current player's symbol
      */
     fun getIcon(boardValue: String?): Int {
         return when (boardValue) {
@@ -200,6 +198,8 @@ class TicTacToeViewModel : ViewModel() {
      * Detects if a move is valid. An invalid move is one placed on top of a previously set space.
      *
      * @param boardValue Value of space in game board
+     *
+     * @return Boolean where true = valid, false = not valid
      */
     private fun moveIsValid(boardValue: String): Boolean = boardValue == ""
 
@@ -220,15 +220,17 @@ class TicTacToeViewModel : ViewModel() {
      * @param x X axis value on the grid
      *
      * @param y Y axis value on the grid
+     *
+     * @return Boolean where true = valid click, false = not valid click
      */
     fun clickBox(x: Int, y: Int): Boolean {
         return if (moveIsValid(gameBoard.value!![x][y])) {
-                GameBoardModelImpl.addSymbol(x, y, currentPlayer.value.toString())
-                swapCurrentPlayer()
-                true
-            } else {
-                false
-            }
+            GameBoardModelImpl.addSymbol(x, y, currentPlayer.value.toString())
+            swapCurrentPlayer()
+            true
+        } else {
+            false
+        }
     }
 
 }
