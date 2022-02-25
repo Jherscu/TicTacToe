@@ -4,7 +4,7 @@ import com.example.tictactoe.model.GameBoardModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class FakeGameBoardModel : GameBoardModel {
+object FakeGameBoardModel : GameBoardModel {
 
     // Direction class for use in TestWin() to test all winning patterns
     sealed class Direction
