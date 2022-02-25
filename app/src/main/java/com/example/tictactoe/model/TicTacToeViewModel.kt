@@ -79,103 +79,68 @@ class TicTacToeViewModel : ViewModel() {
      *  to determine if a winning move has been made.
      *
      *  If one has been made, the state of the LiveData variables [_isWin]
-     *  and [_winningPlayer] are changed to reflect the results via [announceWinner]
+     *  and [_winningPlayer] are changed to reflect the results via [announceWinner].
      */
     fun isThreeInARow(): Boolean {
-        return when {
 
-            /* Vertical checks for the win:
-                If the set of a specified column does not contain an empty space,
-                and is equal to the set of any single space within it,
-                it must be three in a row */
-            // Column 1
-            !(GameBoardPart.COLUMN_LEFT.part.contains("")) -> {
-                if (GameBoardPart.COLUMN_LEFT.part == GameBoardPart.BOX_TOP_LEFT.part) {
-                    // Convert set of single box to list to allow access to contained string
-                    announceWinner(GameBoardPart.BOX_TOP_LEFT.part.toList()[0])
-                    return true
-                }
-                false
-            }
+        /* Vertical checks for the win:
+               If the set of a specified column does not contain an empty space,
+               and is equal to the set of any single space within it,
+               it must be three in a row */
+        // Column 1
+        if (testRow(GameBoardPart.COLUMN_LEFT.part, GameBoardPart.BOX_TOP_LEFT.part)) return true
 
-            // Column 2
-            !(GameBoardPart.COLUMN_MIDDLE.part.contains("")) -> {
-                if (GameBoardPart.COLUMN_MIDDLE.part == GameBoardPart.BOX_CENTER.part) {
-                    // Convert set of single box to list to allow access to contained string
-                    announceWinner(GameBoardPart.BOX_CENTER.part.toList()[0])
-                    return true
-                }
-                false
-            }
+        // Column 2
+        if (testRow(GameBoardPart.COLUMN_MIDDLE.part, GameBoardPart.BOX_CENTER.part)) return true
 
-            // Column 3
-            !(GameBoardPart.COLUMN_RIGHT.part.contains("")) -> {
-                if (GameBoardPart.COLUMN_RIGHT.part == GameBoardPart.BOX_BOTTOM_RIGHT.part) {
-                    // Convert set of single box to list to allow access to contained string
-                    announceWinner(GameBoardPart.BOX_BOTTOM_RIGHT.part.toList()[0])
-                    return true
-                }
-                false
-            }
+        // Column 3
+        if (testRow(GameBoardPart.COLUMN_RIGHT.part, GameBoardPart.BOX_BOTTOM_RIGHT.part)) return true
 
-            /* Horizontal checks for the win:
-                If the set of a specified row does not contain an empty space,
-                and is equal to the set of any single space within it,
-                it must be three in a row */
-            // Row 1
-            !(GameBoardPart.ROW_TOP.part.contains("")) -> {
-                if (GameBoardPart.ROW_TOP.part == GameBoardPart.BOX_TOP_LEFT.part) {
-                    // Convert set of single box to list to allow access to contained string
-                    announceWinner(GameBoardPart.BOX_TOP_LEFT.part.toList()[0])
-                    return true
-                }
-                false
-            }
+        /* Horizontal checks for the win:
+               If the set of a specified row does not contain an empty space,
+               and is equal to the set of any single space within it,
+               it must be three in a row */
+        // Row 1
+        if (testRow(GameBoardPart.ROW_TOP.part, GameBoardPart.BOX_TOP_LEFT.part)) return true
 
-            // Row 2
-            !(GameBoardPart.ROW_MIDDLE.part.contains("")) -> {
-                if (GameBoardPart.ROW_MIDDLE.part == GameBoardPart.BOX_CENTER.part) {
-                    // Convert set of single box to list to allow access to contained string
-                    announceWinner(GameBoardPart.BOX_CENTER.part.toList()[0])
-                    return true
-                }
-                false
-            }
+        // Row 2
+        if (testRow(GameBoardPart.ROW_MIDDLE.part, GameBoardPart.BOX_CENTER.part)) return true
 
-            // Row 3
-            !(GameBoardPart.ROW_BOTTOM.part.contains("")) -> {
-                if (GameBoardPart.ROW_BOTTOM.part == setOf(GameBoardPart.BOX_BOTTOM_RIGHT.part)) {
-                    // Convert set of single box to list to allow access to contained string
-                    announceWinner(GameBoardPart.BOX_BOTTOM_RIGHT.part.toList()[0])
-                    return true
-                }
-                false
-            }
+        // Row 3
+        if (testRow(GameBoardPart.ROW_BOTTOM.part, GameBoardPart.BOX_BOTTOM_RIGHT.part)) return true
 
-            /* Diagonal checks for the win:
-                If the set of a specified diagonal row does not contain an empty space,
-                and is equal to the set of any single space within it,
-                it must be three in a row */
-            // Top left to bottom right
-            !(GameBoardPart.DIAGONAL_TOP_LEFT_TO_BOTTOM_RIGHT.part.contains("")) -> {
-                if (GameBoardPart.DIAGONAL_TOP_LEFT_TO_BOTTOM_RIGHT.part == GameBoardPart.BOX_CENTER.part) {
-                    // Convert set of single box to list to allow access to contained string
-                    announceWinner(GameBoardPart.BOX_CENTER.part.toList()[0])
-                    return true
-                }
-                false
-            }
+        /* Diagonal checks for the win:
+               If the set of a specified diagonal row does not contain an empty space,
+               and is equal to the set of any single space within it,
+               it must be three in a row */
+        // Top left to bottom right
+        if (testRow(GameBoardPart.DIAGONAL_TOP_LEFT_TO_BOTTOM_RIGHT.part, GameBoardPart.BOX_CENTER.part)) return true
 
-            // Top right to bottom left
-            !(GameBoardPart.DIAGONAL_TOP_RIGHT_TO_BOTTOM_LEFT.part.contains("")) -> {
-                if (GameBoardPart.DIAGONAL_TOP_RIGHT_TO_BOTTOM_LEFT.part == GameBoardPart.BOX_CENTER.part) {
-                    // Convert set of single box to list to allow access to contained string
-                    announceWinner(GameBoardPart.BOX_CENTER.part.toList()[0])
+        // Top right to bottom left
+        if (testRow(GameBoardPart.DIAGONAL_TOP_RIGHT_TO_BOTTOM_LEFT.part, GameBoardPart.BOX_CENTER.part)) return true
+
+        return false
+    }
+
+    /**
+     * Tests given row to see if it is three in a row for a player.
+     * If it is, it will return true and announce said player.
+     *
+     * @param row The row being tested for a win
+     *
+     * @param box A box within that row that can be used to compare sets for a win
+     */
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    fun testRow(row: Set<String>, box: Set<String>): Boolean {
+        return if (!(row.contains(""))) {
+            if (row == box) {
+                // Convert set of single box to list to allow access to contained string
+                    announceWinner(box.toList()[0])
                     return true
-                }
-                false
             }
-            else -> false
+            false
+        } else {
+            false
         }
     }
 
