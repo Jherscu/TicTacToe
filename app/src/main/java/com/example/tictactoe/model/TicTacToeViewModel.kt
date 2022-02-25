@@ -1,5 +1,7 @@
 package com.example.tictactoe.model
 
+import android.util.Log
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -8,6 +10,8 @@ import androidx.lifecycle.asLiveData
 import com.example.tictactoe.R
 import java.lang.IllegalArgumentException
 
+
+const val TAG = "MAIN ACTIVITY"
 
 /**
  * ViewModel for [com.example.tictactoe.MainActivity]
@@ -152,10 +156,15 @@ class TicTacToeViewModel : ViewModel() {
      * @return Resource Id for the current player's symbol
      */
     fun getIcon(boardValue: String?): Int {
-        return when (boardValue) {
-            "X" -> R.drawable.icon_x
-            "O" -> R.drawable.icon_o
-            else -> throw IllegalArgumentException("Must pass valid symbol")
+        return try {
+            when (boardValue) {
+                "X" -> R.drawable.icon_x
+                "O" -> R.drawable.icon_o
+                else -> throw IllegalArgumentException("Must pass valid symbol to getIcon")
+            }
+        } catch (e: IllegalArgumentException) {
+            Log.e(TAG, e.message.toString())
+            return R.drawable.ic_baseline_error_outline_24
         }
     }
 
