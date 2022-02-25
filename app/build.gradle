@@ -20,6 +20,14 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // Always show the result of every unit test when running via command line, even if it passes.
+    testOptions{
+        animationsDisabled = true
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
     buildFeatures {
         viewBinding true
     }
@@ -32,12 +40,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
     }
 }
 
@@ -51,7 +59,8 @@ dependencies {
 
     // Testing
     testImplementation "junit:junit:$junit_version"
-    testImplementation "androidx.arch.core:core-testing:$junit_core_version" // LiveData
+    testImplementation "org.robolectric:robolectric:$robolectric_version"
+    testImplementation "androidx.arch.core:core-testing:$arch_test_version" // LiveData
     androidTestImplementation "androidx.test.ext:junit:$junit_androidx_ext_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
     debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
