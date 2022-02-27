@@ -64,7 +64,7 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$junit_androidx_ext_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
     debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
-    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espresso_contrib_version"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_contrib_version"
 
     // Nav
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
