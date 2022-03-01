@@ -2,16 +2,12 @@ package com.example.tictactoe.model
 
 import android.util.Log
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.*
 import com.example.tictactoe.R
 import java.lang.IllegalArgumentException
 
 
-const val TAG = "MAIN ACTIVITY"
+const val TAG = "VIEW MODEL"
 
 /**
  * ViewModel for [com.example.tictactoe.MainActivity]
@@ -20,17 +16,17 @@ const val TAG = "MAIN ACTIVITY"
  */
 class TicTacToeViewModel : ViewModel() {
 
-    private val _playerOneName = MutableLiveData<String>()
+    private val _playerOneName = MutableLiveData("")
     val playerOneName: LiveData<String> = _playerOneName
 
-    private val _playerTwoName = MutableLiveData<String>()
+    private val _playerTwoName = MutableLiveData("")
     val playerTwoName: LiveData<String> = _playerTwoName
 
     // Tracks when a win occurs
     private val _isWin = MutableLiveData(false)
     val isWin: LiveData<Boolean> = _isWin
 
-    private val _winningPlayer = MutableLiveData<String>()
+    private val _winningPlayer = MutableLiveData("")
     val winningPlayer: LiveData<String> = _winningPlayer
 
     // Tracks whose turn it is to play
@@ -41,10 +37,10 @@ class TicTacToeViewModel : ViewModel() {
     val contentDescriptions: LiveData<Map<String, String>> =
         Transformations.map(_contentDescriptions) { mutableMap ->
             mutableMap.toMap()
-        }
+        } // TODO("Track if changes saved/ delete prop?")
 
     init {
-        GameBoardModelImpl.resetState()
+        resetGameState()
     }
 
     val gameBoard = GameBoardModelImpl.gameBoard.asLiveData()
@@ -72,8 +68,8 @@ class TicTacToeViewModel : ViewModel() {
      */
     private fun announceWinner(winningPlayer: String) {
         when (winningPlayer) {
-            "X" -> _winningPlayer.value = _playerOneName.value
-            "O" -> _winningPlayer.value = _playerTwoName.value
+            "X" -> _winningPlayer.value = if (playerOneName.value.isNullOrBlank()) winningPlayer else playerOneName.value
+            "O" -> _winningPlayer.value = if (playerTwoName.value.isNullOrBlank()) winningPlayer else playerTwoName.value
         }
         _isWin.value = true
     }
@@ -164,7 +160,7 @@ class TicTacToeViewModel : ViewModel() {
             }
         } catch (e: IllegalArgumentException) {
             Log.e(TAG, e.message.toString())
-            return R.drawable.ic_baseline_error_outline_24
+            R.drawable.ic_baseline_error_outline_24
         }
     }
 
@@ -206,6 +202,16 @@ class TicTacToeViewModel : ViewModel() {
         } else {
             false
         }
+    }
+
+    @VisibleForTesting
+    fun resetGameState() {
+        GameBoardModelImpl.resetState()
+        _playerOneName.value = ""
+        _playerTwoName.value = ""
+        _isWin.value = false
+        _winningPlayer.value = ""
+        _currentPlayer.value = "X"
     }
 
 }
