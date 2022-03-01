@@ -1,6 +1,7 @@
 package com.example.tictactoe.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,8 @@ import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.example.tictactoe.R
 import com.example.tictactoe.databinding.FragmentGameBinding
 import com.example.tictactoe.model.TicTacToeViewModel
+
+const val TAG = "GAME FRAGMENT"
 
 /**
  * [GameFragment] is the fragment where the Tic Tac Toe game takes place.
@@ -286,17 +289,22 @@ class GameFragment : Fragment() {
      * @return String Id for aforementioned space
      */
     private fun getStringIdFromView(view: View): Int {
-        return when (view) {
-            binding.gridUpperLeft -> R.string.u_l
-            binding.gridUpperCenter -> R.string.u_c
-            binding.gridUpperRight -> R.string.u_r
-            binding.gridCenterLeft -> R.string.c_l
-            binding.gridCenter -> R.string.c
-            binding.gridCenterRight -> R.string.c_r
-            binding.gridLowerLeft -> R.string.l_l
-            binding.gridLowerCenter -> R.string.l_c
-            binding.gridLowerRight -> R.string.l_r
-            else -> throw IllegalArgumentException("Must be a valid ImageView")
+        return try {
+            when (view) {
+                binding.gridUpperLeft -> R.string.u_l
+                binding.gridUpperCenter -> R.string.u_c
+                binding.gridUpperRight -> R.string.u_r
+                binding.gridCenterLeft -> R.string.c_l
+                binding.gridCenter -> R.string.c
+                binding.gridCenterRight -> R.string.c_r
+                binding.gridLowerLeft -> R.string.l_l
+                binding.gridLowerCenter -> R.string.l_c
+                binding.gridLowerRight -> R.string.l_r
+                else -> throw IllegalArgumentException("Must be a valid ImageView associated with a tic tac toe box")
+            }
+        } catch (e: java.lang.IllegalArgumentException) {
+            Log.e(TAG, e.message.toString())
+            R.string.invalid_box
         }
     }
 
