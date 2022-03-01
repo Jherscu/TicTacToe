@@ -9,7 +9,7 @@ enum class FakeGameBoardPart(val part: Set<String>) {
     COLUMN_RIGHT(setOf(gameBoard.value[0][2], gameBoard.value[1][2], gameBoard.value[2][2])),
     ROW_TOP(gameBoard.value[0].toSet()),
     ROW_MIDDLE(gameBoard.value[1].toSet()),
-    ROW_BOTTOM(gameBoard.value[0].toSet()),
+    ROW_BOTTOM(gameBoard.value[2].toSet()),
     DIAGONAL_TOP_LEFT_TO_BOTTOM_RIGHT(
         setOf(
             gameBoard.value[0][0],
