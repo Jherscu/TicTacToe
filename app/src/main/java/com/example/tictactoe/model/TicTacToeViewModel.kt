@@ -201,6 +201,7 @@ class TicTacToeViewModel : ViewModel() {
         return if (moveIsValid(gameBoard.value!![x][y])) {
             GameBoardModelImpl.addSymbol(x, y, currentPlayer.value.toString())
             swapCurrentPlayer()
+            isThreeInARow()
             true
         } else {
             false

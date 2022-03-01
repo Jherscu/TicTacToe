@@ -71,9 +71,6 @@ class GameFragment : Fragment() {
                 viewModel.clickBox(0, 0).toastWhenFalse()
                 // Observe state change and update views
                 observeGameBoard()
-
-                // Checks game board for win
-                viewModel.isThreeInARow()
             }
 
             gridUpperCenter.setOnClickListener {
@@ -83,9 +80,6 @@ class GameFragment : Fragment() {
                 viewModel.clickBox(0, 1).toastWhenFalse()
                 // Observe state change and update views
                 observeGameBoard()
-
-                // Checks game board for win
-                viewModel.isThreeInARow()
             }
 
             gridUpperRight.setOnClickListener {
@@ -95,9 +89,6 @@ class GameFragment : Fragment() {
                 viewModel.clickBox(0, 2).toastWhenFalse()
                 // Observe state change and update views
                 observeGameBoard()
-
-                // Checks game board for win
-                viewModel.isThreeInARow()
             }
 
             gridCenterLeft.setOnClickListener {
@@ -107,9 +98,6 @@ class GameFragment : Fragment() {
                 viewModel.clickBox(1, 0).toastWhenFalse()
                 // Observe state change and update views
                 observeGameBoard()
-
-                // Checks game board for win
-                viewModel.isThreeInARow()
             }
 
             gridCenter.setOnClickListener {
@@ -119,9 +107,6 @@ class GameFragment : Fragment() {
                 viewModel.clickBox(1, 1).toastWhenFalse()
                 // Observe state change and update views
                 observeGameBoard()
-
-                // Checks game board for win
-                viewModel.isThreeInARow()
             }
 
             gridCenterRight.setOnClickListener {
@@ -131,9 +116,6 @@ class GameFragment : Fragment() {
                 viewModel.clickBox(1, 2).toastWhenFalse()
                 // Observe state change and update views
                 observeGameBoard()
-
-                // Checks game board for win
-                viewModel.isThreeInARow()
             }
 
             gridLowerLeft.setOnClickListener {
@@ -143,9 +125,6 @@ class GameFragment : Fragment() {
                 viewModel.clickBox(2, 0).toastWhenFalse()
                 // Observe state change and update views
                 observeGameBoard()
-
-                // Checks game board for win
-                viewModel.isThreeInARow()
             }
 
             gridLowerCenter.setOnClickListener {
@@ -155,9 +134,6 @@ class GameFragment : Fragment() {
                 viewModel.clickBox(2, 1).toastWhenFalse()
                 // Observe state change and update views
                 observeGameBoard()
-
-                // Checks game board for win
-                viewModel.isThreeInARow()
             }
 
             gridLowerRight.setOnClickListener {
@@ -167,9 +143,6 @@ class GameFragment : Fragment() {
                 viewModel.clickBox(2, 2).toastWhenFalse()
                 // Observe state change and update views
                 observeGameBoard()
-
-                // Checks game board for win
-                viewModel.isThreeInARow()
             }
 
         }
