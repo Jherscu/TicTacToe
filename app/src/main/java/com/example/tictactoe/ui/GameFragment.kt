@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.example.tictactoe.R
 import com.example.tictactoe.databinding.FragmentGameBinding
 import com.example.tictactoe.model.TicTacToeViewModel
@@ -222,7 +223,7 @@ class GameFragment : Fragment() {
     private fun Boolean.toastWhenFalse() {
         if (equals(false)) {
             Toast.makeText(
-                requireContext(),
+                getApplicationContext(),
                 R.string.invalid_move,
                 Toast.LENGTH_SHORT
             )
