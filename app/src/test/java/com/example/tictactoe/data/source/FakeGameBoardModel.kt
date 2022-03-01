@@ -39,32 +39,36 @@ object FakeGameBoardModel : GameBoardModel {
         }
     }
 
+    // Overload function signature for different types of directions
     /**
      * Sets test game board to multiple winning scenarios to setup for testing them.
      *
-     * Set via either:
+     * Set via:
      *
-     * x = {0|1|2}, _, direction = Horizontal
+     * row = {0|1|2}, direction = {Horizontal()|Vertical()}
      *
-     * _, y = {0|1|2}, direction = Vertical
-     *
-     * _, _, direction = {TopLeftToBottomRight|TopRightToBottomLeft}
-     *
-     * @param x Position on x axis
-     *
-     * @param y Position on y axis
+     * @param row Position on x or y axis
      *
      * @param direction Direction class specifying which direction to test
      */
-    fun TestWin(x: Int?, y: Int?, direction: Direction) {
+    fun <T: AxialDirection> testWin(row: Int, direction: T) {
         when (direction) {
-            is Horizontal -> x?.apply { testWinHorizontal(x) }
-                ?: throw IllegalArgumentException("Must declare X")
-            is Vertical -> y?.apply { testWinVertical(y) }
-                ?: throw IllegalArgumentException("Must declare Y")
-            is DiagonalDirection -> testWinDiagonal(direction)
-            else -> throw IllegalArgumentException("Please declare valid direction")
+            is Horizontal -> testWinHorizontal(row)
+            is Vertical -> testWinVertical(row)
         }
+    }
+
+    /**
+     * Sets test game board to multiple winning scenarios to setup for testing them.
+     *
+     * Set via:
+     *
+     * direction = {TopLeftToBottomRight()|TopRightToBottomLeft()}
+     *
+     * @param direction Direction class specifying which direction to test
+     */
+    fun <T: DiagonalDirection> testWin(direction: T) {
+            testWinDiagonal(direction)
     }
 
     private fun testWinHorizontal(x: Int) {
