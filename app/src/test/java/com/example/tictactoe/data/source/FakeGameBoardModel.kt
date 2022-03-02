@@ -51,7 +51,7 @@ object FakeGameBoardModel : GameBoardModel {
      *
      * @param direction Direction class specifying which direction to test
      */
-    fun <T: AxialDirection> testWin(row: Int, direction: T) {
+    fun <T : AxialDirection> testWin(row: Int, direction: T) {
         when (direction) {
             is Horizontal -> testWinHorizontal(row)
             is Vertical -> testWinVertical(row)
@@ -67,8 +67,8 @@ object FakeGameBoardModel : GameBoardModel {
      *
      * @param direction Direction class specifying which direction to test
      */
-    fun <T: DiagonalDirection> testWin(direction: T) {
-            testWinDiagonal(direction)
+    fun <T : DiagonalDirection> testWin(direction: T) {
+        testWinDiagonal(direction)
     }
 
     private fun testWinHorizontal(x: Int) {
@@ -76,22 +76,22 @@ object FakeGameBoardModel : GameBoardModel {
     }
 
     private fun testWinVertical(y: Int) {
-        _gameBoard.value[0][y] = "X"
-        _gameBoard.value[1][y] = "X"
-        _gameBoard.value[2][y] = "X"
+        addSymbol(1, y, "X")
+        addSymbol(1, y, "X")
+        addSymbol(1, y, "X")
     }
 
     private fun testWinDiagonal(direction: DiagonalDirection) {
         when (direction) {
             is TopLeftToBottomRight -> {
-                _gameBoard.value[0][0] = "X"
-                _gameBoard.value[1][1] = "X"
-                _gameBoard.value[2][2] = "X"
+                addSymbol(0, 0, "X")
+                addSymbol(1, 1, "X")
+                addSymbol(2, 2, "X")
             }
             is TopRightToBottomLeft -> {
-                _gameBoard.value[0][2] = "X"
-                _gameBoard.value[1][1] = "X"
-                _gameBoard.value[2][0] = "X"
+                addSymbol(0, 2, "X")
+                addSymbol(1, 1, "X")
+                addSymbol(2, 0, "X")
             }
         }
     }

@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.*
 import com.example.tictactoe.R
-import java.lang.IllegalArgumentException
 
 
 const val TAG = "VIEW MODEL"
@@ -68,8 +67,10 @@ class TicTacToeViewModel : ViewModel() {
      */
     private fun announceWinner(winningPlayer: String) {
         when (winningPlayer) {
-            "X" -> _winningPlayer.value = if (playerOneName.value.isNullOrBlank()) winningPlayer else playerOneName.value
-            "O" -> _winningPlayer.value = if (playerTwoName.value.isNullOrBlank()) winningPlayer else playerTwoName.value
+            "X" -> _winningPlayer.value =
+                if (playerOneName.value.isNullOrBlank()) winningPlayer else playerOneName.value
+            "O" -> _winningPlayer.value =
+                if (playerTwoName.value.isNullOrBlank()) winningPlayer else playerTwoName.value
         }
         _isWin.value = true
     }
@@ -94,7 +95,11 @@ class TicTacToeViewModel : ViewModel() {
         if (testRow(GameBoardPart.COLUMN_MIDDLE.part, GameBoardPart.BOX_CENTER.part)) return true
 
         // Column 3
-        if (testRow(GameBoardPart.COLUMN_RIGHT.part, GameBoardPart.BOX_BOTTOM_RIGHT.part)) return true
+        if (testRow(
+                GameBoardPart.COLUMN_RIGHT.part,
+                GameBoardPart.BOX_BOTTOM_RIGHT.part
+            )
+        ) return true
 
         /* Horizontal checks for the win:
                If the set of a specified row does not contain an empty space,
@@ -114,10 +119,18 @@ class TicTacToeViewModel : ViewModel() {
                and is equal to the set of any single space within it,
                it must be three in a row */
         // Top left to bottom right
-        if (testRow(GameBoardPart.DIAGONAL_TOP_LEFT_TO_BOTTOM_RIGHT.part, GameBoardPart.BOX_CENTER.part)) return true
+        if (testRow(
+                GameBoardPart.DIAGONAL_TOP_LEFT_TO_BOTTOM_RIGHT.part,
+                GameBoardPart.BOX_CENTER.part
+            )
+        ) return true
 
         // Top right to bottom left
-        if (testRow(GameBoardPart.DIAGONAL_TOP_RIGHT_TO_BOTTOM_LEFT.part, GameBoardPart.BOX_CENTER.part)) return true
+        if (testRow(
+                GameBoardPart.DIAGONAL_TOP_RIGHT_TO_BOTTOM_LEFT.part,
+                GameBoardPart.BOX_CENTER.part
+            )
+        ) return true
 
         return false
     }
@@ -135,8 +148,8 @@ class TicTacToeViewModel : ViewModel() {
         return if (!(row.contains(""))) {
             if (row == box) {
                 // Convert set of single box to list to allow access to contained string
-                    announceWinner(box.toList()[0])
-                    return true
+                announceWinner(box.toList()[0])
+                return true
             }
             false
         } else {

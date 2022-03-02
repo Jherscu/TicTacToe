@@ -20,7 +20,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    testOptions{
+    testOptions {
         animationsDisabled = true
         unitTests {
             // Always show the result of every unit test when running via command line,
