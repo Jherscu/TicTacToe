@@ -32,12 +32,6 @@ class TicTacToeViewModel : ViewModel() {
     private val _currentPlayer = MutableLiveData("X")
     val currentPlayer: LiveData<String> = _currentPlayer
 
-    private val _contentDescriptions = MutableLiveData<MutableMap<String, String>>()
-    val contentDescriptions: LiveData<Map<String, String>> =
-        Transformations.map(_contentDescriptions) { mutableMap ->
-            mutableMap.toMap()
-        } // TODO("Track if changes saved/ delete prop?")
-
     init {
         resetGameState()
     }
