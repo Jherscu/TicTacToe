@@ -6,6 +6,7 @@ Basic Two Player Tic Tac Toe app utilizing:
 - JUnit, Espresso, Hamcrest
 - ViewModel
 - LiveData
+- StateFlow
 
 User Story:
 
@@ -40,7 +41,7 @@ User Story:
 
     - Tests / Game logic
 
-    - Add dialogs
+    - Report Game Results: Add dialogs / Track User State in UI
 
     - Resolve accessibility issues/fine tune UI
 
