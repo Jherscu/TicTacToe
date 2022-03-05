@@ -3,7 +3,6 @@ package com.example.tictactoe.model
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.tictactoe.R
 import com.example.tictactoe.data.source.FakeGameBoardModel
-import com.example.tictactoe.data.source.FakeGameBoardPart
 import com.example.tictactoe.util.getOrAwaitValue
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
@@ -19,26 +18,33 @@ class TicTacToeViewModelTest {
 
 
     private lateinit var viewModel: TicTacToeViewModel
+    private lateinit var model: FakeGameBoardModel
 
     @Before
     fun setup_view_model() {
         viewModel = TicTacToeViewModel()
+        model = FakeGameBoardModel()
     }
 
     @After
     fun clean_up_view_model_and_game_board() {
         viewModel.resetGameState()
-        FakeGameBoardModel.resetState()
+        model.resetState()
     }
 
     @Test
     fun set_top_horizontal_row_test_row_returns_true() {
 
-        FakeGameBoardModel.testWin(0, FakeGameBoardModel.Horizontal())
+        model.testWin(0, FakeGameBoardModel.Horizontal())
 
         assertThat(
             "Testing win did not return true for top row",
-            viewModel.testRow(FakeGameBoardPart.ROW_TOP.part, FakeGameBoardPart.BOX_TOP_LEFT.part),
+            viewModel.testRow(
+                model.gameBoard.value[0].toSet(),
+                setOf(
+                    model.gameBoard.value[0][0]
+                )
+            ),
             `is`(true)
         )
     }
@@ -46,11 +52,16 @@ class TicTacToeViewModelTest {
     @Test
     fun set_middle_horizontal_row_test_row_returns_true() {
 
-        FakeGameBoardModel.testWin(1, FakeGameBoardModel.Horizontal())
+        model.testWin(1, FakeGameBoardModel.Horizontal())
 
         assertThat(
             "Testing win did not return true for middle row",
-            viewModel.testRow(FakeGameBoardPart.ROW_MIDDLE.part, FakeGameBoardPart.BOX_CENTER.part),
+            viewModel.testRow(
+                model.gameBoard.value[1].toSet(),
+                setOf(
+                    model.gameBoard.value[1][0]
+                )
+            ),
             `is`(true)
         )
     }
@@ -58,13 +69,15 @@ class TicTacToeViewModelTest {
     @Test
     fun set_bottom_horizontal_row_test_row_returns_true() {
 
-        FakeGameBoardModel.testWin(2, FakeGameBoardModel.Horizontal())
+        model.testWin(2, FakeGameBoardModel.Horizontal())
 
         assertThat(
             "Testing win did not return true for bottom row",
             viewModel.testRow(
-                FakeGameBoardPart.ROW_BOTTOM.part,
-                FakeGameBoardPart.BOX_BOTTOM_RIGHT.part
+                model.gameBoard.value[2].toSet(),
+                setOf(
+                    model.gameBoard.value[2][0]
+                )
             ),
             `is`(true)
         )
@@ -73,13 +86,19 @@ class TicTacToeViewModelTest {
     @Test
     fun set_left_vertical_column_test_column_returns_true() {
 
-        FakeGameBoardModel.testWin(0, FakeGameBoardModel.Vertical())
+        model.testWin(0, FakeGameBoardModel.Vertical())
 
         assertThat(
             "Testing win did not return true for left column",
             viewModel.testRow(
-                FakeGameBoardPart.COLUMN_LEFT.part,
-                FakeGameBoardPart.BOX_TOP_LEFT.part
+                setOf(
+                    model.gameBoard.value[0][0],
+                    model.gameBoard.value[1][0],
+                    model.gameBoard.value[2][0]
+                ),
+                setOf(
+                    model.gameBoard.value[0][0]
+                )
             ),
             `is`(true)
         )
@@ -88,13 +107,19 @@ class TicTacToeViewModelTest {
     @Test
     fun set_middle_vertical_column_test_column_returns_true() {
 
-        FakeGameBoardModel.testWin(1, FakeGameBoardModel.Vertical())
+        model.testWin(1, FakeGameBoardModel.Vertical())
 
         assertThat(
             "Testing win did not return true for middle column",
             viewModel.testRow(
-                FakeGameBoardPart.COLUMN_MIDDLE.part,
-                FakeGameBoardPart.BOX_CENTER.part
+                setOf(
+                    model.gameBoard.value[0][1],
+                    model.gameBoard.value[1][1],
+                    model.gameBoard.value[2][1]
+                ),
+                setOf(
+                    model.gameBoard.value[1][1]
+                )
             ),
             `is`(true)
         )
@@ -103,13 +128,17 @@ class TicTacToeViewModelTest {
     @Test
     fun set_right_vertical_column_test_column_returns_true() {
 
-        FakeGameBoardModel.testWin(2, FakeGameBoardModel.Vertical())
+        model.testWin(2, FakeGameBoardModel.Vertical())
 
         assertThat(
             "Testing win did not return true for right column",
             viewModel.testRow(
-                FakeGameBoardPart.COLUMN_RIGHT.part,
-                FakeGameBoardPart.BOX_BOTTOM_RIGHT.part
+                setOf(
+                    model.gameBoard.value[0][2],
+                    model.gameBoard.value[1][2],
+                    model.gameBoard.value[2][2]),
+                setOf(
+                    model.gameBoard.value[2][2])
             ),
             `is`(true)
         )
@@ -118,13 +147,19 @@ class TicTacToeViewModelTest {
     @Test
     fun set_top_left_to_bottom_right_diagonal_test_diagonal_returns_true() {
 
-        FakeGameBoardModel.testWin(FakeGameBoardModel.TopLeftToBottomRight())
+        model.testWin(FakeGameBoardModel.TopLeftToBottomRight())
 
         assertThat(
             "Testing win did not return true for top left to bottom right diagonal",
             viewModel.testRow(
-                FakeGameBoardPart.DIAGONAL_TOP_LEFT_TO_BOTTOM_RIGHT.part,
-                FakeGameBoardPart.BOX_CENTER.part
+                setOf(
+                    model.gameBoard.value[0][0],
+                    model.gameBoard.value[1][1],
+                    model.gameBoard.value[2][2]
+                ),
+                setOf(
+                    model.gameBoard.value[1][1]
+                )
             ),
             `is`(true)
         )
@@ -133,13 +168,19 @@ class TicTacToeViewModelTest {
     @Test
     fun set_top_right_to_bottom_left_diagonal_test_diagonal_returns_true() {
 
-        FakeGameBoardModel.testWin(FakeGameBoardModel.TopRightToBottomLeft())
+        model.testWin(FakeGameBoardModel.TopRightToBottomLeft())
 
         assertThat(
             "Testing win did not return true for top right to bottom left diagonal",
             viewModel.testRow(
-                FakeGameBoardPart.DIAGONAL_TOP_RIGHT_TO_BOTTOM_LEFT.part,
-                FakeGameBoardPart.BOX_CENTER.part
+                setOf(
+                    model.gameBoard.value[0][2],
+                    model.gameBoard.value[1][1],
+                    model.gameBoard.value[2][0]
+                ),
+                setOf(
+                    model.gameBoard.value[1][1]
+                )
             ),
             `is`(true)
         )
@@ -153,11 +194,17 @@ class TicTacToeViewModelTest {
     @Test
     fun set_top_left_to_bottom_right_diagonal_test_live_data_values_change() {
 
-        FakeGameBoardModel.testWin(FakeGameBoardModel.TopLeftToBottomRight())
+        model.testWin(FakeGameBoardModel.TopLeftToBottomRight())
 
         viewModel.testRow(
-            FakeGameBoardPart.DIAGONAL_TOP_LEFT_TO_BOTTOM_RIGHT.part,
-            FakeGameBoardPart.BOX_CENTER.part
+            setOf(
+                model.gameBoard.value[0][0],
+                model.gameBoard.value[1][1],
+                model.gameBoard.value[2][2]
+            ),
+            setOf(
+                model.gameBoard.value[1][1]
+            )
         )
 
         assertThat(
