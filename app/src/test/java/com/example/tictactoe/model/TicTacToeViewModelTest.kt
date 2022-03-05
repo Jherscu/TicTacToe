@@ -136,9 +136,11 @@ class TicTacToeViewModelTest {
                 setOf(
                     model.gameBoard.value[0][2],
                     model.gameBoard.value[1][2],
-                    model.gameBoard.value[2][2]),
+                    model.gameBoard.value[2][2]
+                ),
                 setOf(
-                    model.gameBoard.value[2][2])
+                    model.gameBoard.value[2][2]
+                )
             ),
             `is`(true)
         )
