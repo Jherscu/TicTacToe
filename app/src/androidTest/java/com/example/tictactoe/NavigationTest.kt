@@ -50,8 +50,7 @@ class NavigationTest {
     // Extracts initialization of Game fragment to use in multiple (possible) tests in larger app
     private fun gameFragmentInit() {
         // Frame args as safe args object and pass them to init
-        val args = GameFragmentArgs("X", "O")
-        val bundle = args.toBundle()
+        val bundle = GameFragmentArgs("X", "O").toBundle()
 
         init(
             scenario = launchFragmentInContainer<GameFragment>(

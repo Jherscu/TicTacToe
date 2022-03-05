@@ -2,7 +2,10 @@ package com.example.tictactoe.model
 
 import android.util.Log
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import com.example.tictactoe.R
 
 
@@ -31,12 +34,6 @@ class TicTacToeViewModel : ViewModel() {
     // Tracks whose turn it is to play
     private val _currentPlayer = MutableLiveData("X")
     val currentPlayer: LiveData<String> = _currentPlayer
-
-    private val _contentDescriptions = MutableLiveData<MutableMap<String, String>>()
-    val contentDescriptions: LiveData<Map<String, String>> =
-        Transformations.map(_contentDescriptions) { mutableMap ->
-            mutableMap.toMap()
-        } // TODO("Track if changes saved/ delete prop?")
 
     init {
         resetGameState()

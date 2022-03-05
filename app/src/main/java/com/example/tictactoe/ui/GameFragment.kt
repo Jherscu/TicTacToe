@@ -231,19 +231,17 @@ class GameFragment : Fragment() {
      */
     private fun updateView(view: View, symbol: String) {
 
-        // Set image and descriptive content description if the space has been clicked by
-        // user and updated in gameBoardModelImpl
-        if (symbol != "") {
+        view.contentDescription = if (symbol != "") {
+            // Also updates background image before assigning description
             view.setBackgroundResource(viewModel.getIcon(symbol))
-            view.contentDescription = updatedContentDescription(view, symbol)
-        } else { // Set default content description
 
-            view.contentDescription = getString(
+            updatedContentDescription(view, symbol)
+        } else { // Set default description
+            getString(
                 R.string.content_description_format,
                 getString(getStringIdFromView(view)),
                 getString(R.string.empty)
             )
-
         }
     }
 
