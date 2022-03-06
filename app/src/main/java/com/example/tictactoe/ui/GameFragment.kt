@@ -15,7 +15,7 @@ import com.example.tictactoe.databinding.FragmentGameBinding
 import com.example.tictactoe.model.TicTacToeViewModel
 import com.example.tictactoe.ui.dialog.WinningDialog
 
-const val TAG = "GAME FRAGMENT"
+const val TAG = "GAME_FRAGMENT"
 
 /**
  * [GameFragment] is the fragment where the Tic Tac Toe game takes place.

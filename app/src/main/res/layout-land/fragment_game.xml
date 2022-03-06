@@ -11,15 +11,15 @@
         android:id="@+id/player_turn_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:padding="18dp"
         android:textAlignment="center"
-        android:gravity="center"
         android:textColor="#8C9EFF"
         android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/image_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/image_background"
-        app:layout_constraintBottom_toBottomOf="parent"
         tools:text="O's Turn" />
 
     <ImageView

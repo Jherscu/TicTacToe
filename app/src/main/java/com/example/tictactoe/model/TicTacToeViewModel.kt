@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.example.tictactoe.R
 
-const val TAG = "VIEW MODEL"
+const val TAG = "VIEW_MODEL"
 
 /**
  * ViewModel for [com.example.tictactoe.MainActivity]
