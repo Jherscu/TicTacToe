@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/purple_500">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/player_turn_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="18dp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textColor="#8C9EFF"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/image_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="O's Turn" />
+
+    <ImageView
+        android:id="@+id/image_background"
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/board"
+        android:src="@drawable/icon_background"
+        app:layout_constraintBottom_toBottomOf="@id/tic_tac_toe_board"
+        app:layout_constraintEnd_toEndOf="@id/tic_tac_toe_board"
+        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintStart_toStartOf="@id/tic_tac_toe_board"
+        app:layout_constraintTop_toTopOf="@id/tic_tac_toe_board"
+        app:layout_constraintVertical_bias="0.45" />
+
+    <GridLayout
+        android:id="@+id/tic_tac_toe_board"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:rowCount="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_end_game"
+        app:layout_constraintStart_toEndOf="@id/player_turn_view"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/grid_upper_left"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="12dp" />
+
+        <ImageView
+            android:id="@+id/grid_upper_center"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="12dp" />
+
+        <ImageView
+            android:id="@+id/grid_upper_right"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="12dp" />
+
+        <ImageView
+            android:id="@+id/grid_center_left"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="12dp" />
+
+        <ImageView
+            android:id="@+id/grid_center"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="12dp" />
+
+        <ImageView
+            android:id="@+id/grid_center_right"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="12dp" />
+
+        <ImageView
+            android:id="@+id/grid_lower_left"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="12dp" />
+
+        <ImageView
+            android:id="@+id/grid_lower_center"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="12dp" />
+
+        <ImageView
+            android:id="@+id/grid_lower_right"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="12dp" />
+
+    </GridLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_end_game"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:text="@string/end_game"
+        android:textColor="#1DE9B6"
+        app:cornerRadius="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/teal_200"
+        app:strokeWidth="3dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
