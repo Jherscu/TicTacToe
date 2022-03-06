@@ -68,6 +68,14 @@ class GameFragment : Fragment() {
             }
         }
 
+        viewModel.currentPlayer.observe(viewLifecycleOwner) {
+            binding.playerTurnView.text = when (it) {
+                "X" -> getString(R.string.player_turn, viewModel.playerOneName.value)
+                "O" -> getString(R.string.player_turn, viewModel.playerTwoName.value)
+                else -> getString(R.string.confused_turn)
+            }
+        }
+
         viewModel.winningPlayer.observe(viewLifecycleOwner) {
             if (it == "DRAW") {
                 WinningDialog(viewModel, this).show(

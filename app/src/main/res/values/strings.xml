@@ -14,10 +14,12 @@
     <string name="empty">Empty</string>
     <string name="content_description_format">%1$s Box: %2$s</string>
     <string name="invalid_move">Please pick an empty square!</string>
-    <string name="invalid_box">This box\… doesn\'t exist.\n
+    <string name="invalid_box">This box… doesn\'t exist.\n
         How did you click on a box that doesn\'t exist?!?\n
         What in the sam hill is going on here???</string>
+    <string name="confused_turn">Whose turn is it?… I do believe there\'s been an error.</string>
     <string name="you_win">%1$s WINS!!!</string>
+    <string name="player_turn">%1$s\'s Turn</string>
     <string name="draw">DRAW</string>
     <string name="play_again">Play Again</string>
     <string name="exit_game">Exit Game</string>
