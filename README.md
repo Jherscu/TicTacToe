@@ -39,9 +39,9 @@ User Story:
 
     - Add Live Arg Bundles to pass player names to navigation [X - 2/13/22]
 
-    - Tests / Game logic
+    - Tests / Game logic [X - 3/5/22]
 
-    - Report Game Results: Add dialogs / Track User State in UI
+    - Report Game Results: Add dialogs / Track User State in UI [X - 3/6/22]
 
     - Resolve accessibility issues/fine tune UI
 
