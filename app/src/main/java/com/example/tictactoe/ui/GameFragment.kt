@@ -10,10 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.example.tictactoe.R
 import com.example.tictactoe.databinding.FragmentGameBinding
 import com.example.tictactoe.model.TicTacToeViewModel
+import com.example.tictactoe.ui.dialog.WinningDialog
 
 const val TAG = "GAME FRAGMENT"
 
@@ -58,6 +58,24 @@ class GameFragment : Fragment() {
         viewModel.updatePlayerName(2, args.playerTwoName)
 
         observeGameBoard() // Used for initial construction/reconstruction of Fragment
+
+        viewModel.isWin.observe(viewLifecycleOwner) {
+            if (it) {
+                WinningDialog(viewModel, this).show(
+                    childFragmentManager,
+                    "WinningDialogFragmentAsWin"
+                )
+            }
+        }
+
+        viewModel.winningPlayer.observe(viewLifecycleOwner) {
+            if (it == "DRAW") {
+                WinningDialog(viewModel, this).show(
+                    childFragmentManager,
+                    "WinningDialogFragmentAsDraw"
+                )
+            }
+        }
 
         binding.apply {
             buttonEndGame.setOnClickListener {
@@ -189,6 +207,12 @@ class GameFragment : Fragment() {
             with(it[2][2]) {
                 updateView(binding.gridLowerRight, this)
             }
+
+            viewModel.testGameBoardForWin(it)
+
+            if (!it.flatten().toSet().contains("")) {
+                viewModel.declareDraw()
+            }
         }
     }
 
@@ -199,7 +223,7 @@ class GameFragment : Fragment() {
     private fun Boolean.toastWhenFalse() {
         if (equals(false)) {
             Toast.makeText(
-                getApplicationContext(),
+                requireActivity().applicationContext,
                 R.string.invalid_move,
                 Toast.LENGTH_SHORT
             )
@@ -279,12 +303,10 @@ class GameFragment : Fragment() {
         }
     }
 
-    // TODO( If viewModel.isWin == true, create dialog. Announce winning player.
-    //  opt 1 end game return to home, opt 2 reset state start over )
-
     // Resets binding object
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }

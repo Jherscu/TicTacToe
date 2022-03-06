@@ -17,6 +17,10 @@
     <string name="invalid_box">This box\… doesn\'t exist.\n
         How did you click on a box that doesn\'t exist?!?\n
         What in the sam hill is going on here???</string>
+    <string name="you_win">%1$s WINS!!!</string>
+    <string name="draw">DRAW</string>
+    <string name="play_again">Play Again</string>
+    <string name="exit_game">Exit Game</string>
     <string name="end_game">END GAME</string>
     <string name="start_game">START GAME</string>
     <string name="player_one_name">Player 1: X</string>

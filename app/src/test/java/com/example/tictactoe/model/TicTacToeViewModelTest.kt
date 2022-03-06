@@ -15,7 +15,7 @@ class TicTacToeViewModelTest {
 
     @get:Rule // Ensures liveData doesn't run on main thread
     var instantTaskExecutorRule = InstantTaskExecutorRule()
-    
+
     private lateinit var viewModel: TicTacToeViewModel
     private lateinit var model: FakeGameBoardModel
 
