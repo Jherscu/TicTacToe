@@ -218,7 +218,7 @@ class GameFragment : Fragment() {
 
             viewModel.testGameBoardForWin(it)
 
-            if (!it.flatten().toSet().contains("")) {
+            if (!it.flatten().toSet().contains("") && viewModel.isWin.value == false) {
                 viewModel.declareDraw()
             }
         }
