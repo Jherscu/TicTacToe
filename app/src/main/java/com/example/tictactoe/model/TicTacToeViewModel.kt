@@ -2,11 +2,9 @@ package com.example.tictactoe.model
 
 import android.util.Log
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.*
 import com.example.tictactoe.R
+import kotlinx.coroutines.launch
 
 const val TAG = "VIEW_MODEL"
 
@@ -231,12 +229,14 @@ class TicTacToeViewModel : ViewModel() {
      * Resets the viewModel and GameBoardImpl state
      */
     fun resetGameState() {
-        GameBoardModelImpl.resetState()
-        _playerOneName.value = ""
-        _playerTwoName.value = ""
-        _isWin.value = false
-        _winningPlayer.value = ""
-        _currentPlayer.value = "X"
+        viewModelScope.launch {
+            GameBoardModelImpl.resetState()
+            _playerOneName.value = ""
+            _playerTwoName.value = ""
+            _isWin.value = false
+            _winningPlayer.value = ""
+            _currentPlayer.value = "X"
+        }
     }
 
 }

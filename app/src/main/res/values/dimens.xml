@@ -4,8 +4,8 @@
     <dimen name="game_box_land">36dp</dimen>
     <dimen name="game_box_margin_land">11dp</dimen>
     <dimen name="game_box_margin_port">22dp</dimen>
-    <dimen name="button_stroke_width">3dp</dimen>
-    <dimen name="button_corner_radius">6dp</dimen>
+    <dimen name="standard_stroke_width">3dp</dimen>
+    <dimen name="standard_corner_radius">6dp</dimen>
     <dimen name="padding_standard">18dp</dimen>
     <dimen name="text_title">36sp</dimen>
     <dimen name="game_background_length_port">410dp</dimen>

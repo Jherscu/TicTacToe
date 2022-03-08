@@ -14,6 +14,7 @@
         app:layout_constraintEnd_toStartOf="@id/image_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        tools:background="@color/yellow_100"
         tools:text="O's Turn" />
 
     <ImageView

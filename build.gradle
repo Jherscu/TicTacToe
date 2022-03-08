@@ -20,7 +20,6 @@ buildscript {
         gradle_version = '7.1.1'
         fragment_version = '1.4.1'
         coroutine_version = '1.4.0'
-
     }
     repositories {
         google()

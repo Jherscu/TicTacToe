@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_500">
+    android:background="@color/purple_500"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,6 +15,9 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/player_turn_view"
             style="@style/Widget.TicTacToe.TextView"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="@dimen/game_box_margin_port"
+            app:layout_constraintBottom_toTopOf="@id/image_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

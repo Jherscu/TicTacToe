@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -72,10 +73,24 @@ class GameFragment : Fragment() {
         }
 
         viewModel.currentPlayer.observe(viewLifecycleOwner) {
-            binding.playerTurnView.text = when (it) {
-                "X" -> getString(R.string.player_turn, viewModel.playerOneName.value)
-                "O" -> getString(R.string.player_turn, viewModel.playerTwoName.value)
-                else -> getString(R.string.confused_turn)
+            binding.playerTurnView.apply {
+                when (it) {
+                    "X" -> {
+                        text = getString(R.string.player_turn, viewModel.playerOneName.value)
+                        background = AppCompatResources.getDrawable(
+                            context,
+                            R.drawable.rounded_text_view_yellow
+                        )
+                    }
+                    "O" -> {
+                        text = getString(R.string.player_turn, viewModel.playerTwoName.value)
+                        background = AppCompatResources.getDrawable(
+                            context,
+                            R.drawable.rounded_text_view_pink
+                        )
+                    }
+                    else -> getString(R.string.confused_turn)
+                }
             }
         }
 
