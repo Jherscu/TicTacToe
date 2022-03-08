@@ -43,6 +43,6 @@ User Story:
 
     - Report Game Results: Add dialogs / Track User State in UI [X - 3/6/22]
 
-    - Resolve accessibility issues/fine tune UI
+    - Resolve accessibility issues/fine tune UI [X - 3/8/22]
 
     - Practice prepping for play store
