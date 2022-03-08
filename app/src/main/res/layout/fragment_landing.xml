@@ -8,56 +8,40 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Widget.TicTacToe.TextView"
         android:layout_marginBottom="64dp"
         android:text="@string/app_name"
-        android:textColor="@color/purple_500"
-        android:textSize="36sp" />
+        android:textColor="@color/purple_500" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/player_one_name"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="164dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp">
+        style="@style/Widget.TicTacToe.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/player_one_name_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:hint="@string/player_one_name"
-            android:textColorHint="#00695C" />
+            style="@style/TextInputEditText"
+            android:hint="@string/player_one_name" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/player_two_name"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="164dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp">
+        style="@style/Widget.TicTacToe.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/player_two_name_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:hint="@string/player_two_name"
-            android:textColorHint="#00695C" />
+            style="@style/TextInputEditText"
+            android:hint="@string/player_two_name" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_start_game"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Widget.TicTacToe.Button"
         android:text="@string/start_game"
-        android:textColor="#5E35B1"
-        app:cornerRadius="6dp"
-        app:strokeColor="@color/purple_500"
-        app:strokeWidth="3dp" />
+        android:textColor="@color/purple_500"
+        app:strokeColor="@color/purple_500" />
 
 </LinearLayout>

@@ -9,13 +9,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/player_turn_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="18dp"
-        android:textAlignment="center"
-        android:textColor="#8C9EFF"
-        android:textSize="36sp"
+        style="@style/Widget.TicTacToe.TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/image_background"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,8 +18,8 @@
 
     <ImageView
         android:id="@+id/image_background"
-        android:layout_width="210dp"
-        android:layout_height="210dp"
+        android:layout_width="@dimen/game_background_length_land"
+        android:layout_height="@dimen/game_background_length_land"
         android:adjustViewBounds="true"
         android:contentDescription="@string/board"
         android:src="@drawable/icon_background"
@@ -49,73 +43,51 @@
 
         <ImageView
             android:id="@+id/grid_upper_left"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_margin="12dp" />
+            style="@style/GameBoxLand" />
 
         <ImageView
             android:id="@+id/grid_upper_center"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_margin="12dp" />
+            style="@style/GameBoxLand" />
 
         <ImageView
             android:id="@+id/grid_upper_right"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_margin="12dp" />
+            style="@style/GameBoxLand" />
 
         <ImageView
             android:id="@+id/grid_center_left"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_margin="12dp" />
+            style="@style/GameBoxLand" />
 
         <ImageView
             android:id="@+id/grid_center"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_margin="12dp" />
+            style="@style/GameBoxLand" />
 
         <ImageView
             android:id="@+id/grid_center_right"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_margin="12dp" />
+            style="@style/GameBoxLand" />
 
         <ImageView
             android:id="@+id/grid_lower_left"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_margin="12dp" />
+            style="@style/GameBoxLand" />
 
         <ImageView
             android:id="@+id/grid_lower_center"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_margin="12dp" />
+            style="@style/GameBoxLand" />
 
         <ImageView
             android:id="@+id/grid_lower_right"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_margin="12dp" />
+            style="@style/GameBoxLand" />
 
     </GridLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_end_game"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
+        style="@style/Widget.TicTacToe.Button"
+        android:layout_width="@dimen/square_button_length"
+        android:layout_height="@dimen/square_button_length"
         android:text="@string/end_game"
-        android:textColor="#1DE9B6"
-        app:cornerRadius="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/image_background"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/teal_200"
-        app:strokeWidth="3dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

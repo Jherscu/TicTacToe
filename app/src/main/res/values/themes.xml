@@ -12,5 +12,10 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <!-- Edit Text Layout style -->
+        <item name="textInputOutlinedDenseStyle">
+            @style/Widget.TicTacToe.TextInputLayout.OutlinedBox.Dense
+        </item>
     </style>
 </resources>
