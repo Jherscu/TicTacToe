@@ -21,7 +21,7 @@
 
     <style name="Widget.TicTacToe.TextInputLayout.OutlinedBox.Dense" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="android:layout_width">@dimen/edit_text_width</item>
-        <item name="android:layout_marginBottom">@dimen/landing_margin</item>
+        <item name="android:layout_marginBottom">@dimen/landing_margin_small</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 

@@ -220,10 +220,16 @@ class TicTacToeViewModel : ViewModel() {
         }
     }
 
+    /**
+     * Sets _winningPlayer to "DRAW"
+     */
     fun declareDraw() {
         _winningPlayer.value = "DRAW"
     }
 
+    /**
+     * Resets the viewModel and GameBoardImpl state
+     */
     fun resetGameState() {
         GameBoardModelImpl.resetState()
         _playerOneName.value = ""

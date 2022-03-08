@@ -9,6 +9,9 @@ import com.example.tictactoe.R
 import com.example.tictactoe.model.TicTacToeViewModel
 import com.example.tictactoe.ui.GameFragment
 
+/**
+ * Dialog called from [GameFragment] that will announce the winner of the game, or a draw.
+ */
 class WinningDialog(
     private val viewModel: TicTacToeViewModel,
     private val fragment: GameFragment
@@ -66,7 +69,9 @@ class WinningDialog(
                 listener.onWinningDialogNegativeClick(this, viewModel)
             }
 
-            builder.create()
+            return builder.create().apply {
+                setCanceledOnTouchOutside(false)
+            }
         } ?: throw IllegalStateException("Context cannot be null")
     }
 

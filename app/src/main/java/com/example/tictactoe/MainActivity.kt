@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity(), WinningDialog.WinningDialogListener {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    // The following two methods can only be called from GameFragment through WinningDialog
+    // The following two methods can only be called from GameFragment via WinningDialog
     override fun onWinningDialogPositiveClick(
         dialog: DialogFragment,
         viewModel: TicTacToeViewModel,

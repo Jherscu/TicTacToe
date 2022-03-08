@@ -61,7 +61,10 @@ class GameFragment : Fragment() {
 
         viewModel.isWin.observe(viewLifecycleOwner) {
             if (it) {
-                WinningDialog(viewModel, this).show(
+                WinningDialog(viewModel, this).apply {
+                    // Prevents back button from exiting dialog
+                    isCancelable = false
+                }.show(
                     childFragmentManager,
                     "WinningDialogFragmentAsWin"
                 )
@@ -78,10 +81,8 @@ class GameFragment : Fragment() {
 
         viewModel.winningPlayer.observe(viewLifecycleOwner) {
             if (it == "DRAW") {
-                WinningDialog(viewModel, this).show(
-                    childFragmentManager,
-                    "WinningDialogFragmentAsDraw"
-                )
+                WinningDialog(viewModel, this)
+                    .show(childFragmentManager, "WinningDialogFragmentAsDraw")
             }
         }
 
