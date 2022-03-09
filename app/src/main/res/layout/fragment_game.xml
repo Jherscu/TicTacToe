@@ -21,7 +21,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="O's Turn" />
+            tools:background="@drawable/rounded_text_view_yellow"
+            tools:text="X's Turn" />
 
         <ImageView
             android:id="@+id/image_background"
@@ -50,11 +51,13 @@
 
             <ImageView
                 android:id="@+id/grid_upper_left"
-                style="@style/GameBoxPort" />
+                style="@style/GameBoxPort"
+                tools:background="@drawable/icon_x" />
 
             <ImageView
                 android:id="@+id/grid_upper_center"
-                style="@style/GameBoxPort" />
+                style="@style/GameBoxPort"
+                tools:background="@drawable/icon_x" />
 
             <ImageView
                 android:id="@+id/grid_upper_right"
@@ -70,11 +73,13 @@
 
             <ImageView
                 android:id="@+id/grid_center_right"
-                style="@style/GameBoxPort" />
+                style="@style/GameBoxPort"
+                tools:background="@drawable/icon_o" />
 
             <ImageView
                 android:id="@+id/grid_lower_left"
-                style="@style/GameBoxPort" />
+                style="@style/GameBoxPort"
+                tools:background="@drawable/icon_o" />
 
             <ImageView
                 android:id="@+id/grid_lower_center"

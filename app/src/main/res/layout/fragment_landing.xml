@@ -13,6 +13,17 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/github_link"
+            style="@style/Widget.TicTacToe.Button"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/padding_standard"
+            android:layout_marginEnd="@dimen/padding_standard"
+            android:layout_marginBottom="@dimen/landing_margin_large"
+            android:text="@string/github"
+            android:textColor="@color/purple_500"
+            app:strokeColor="@color/purple_500" />
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/title"
             style="@style/Widget.TicTacToe.TextView"

@@ -1,9 +1,14 @@
 package com.example.tictactoe.ui
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
@@ -11,7 +16,7 @@ import com.example.tictactoe.databinding.FragmentLandingBinding
 
 /**
  * [LandingFragment] is the first screen visible to the user.
- * It starts a new game and launches [GameFragment]
+ * It starts a new game and launches [GameFragment].
  */
 class LandingFragment : Fragment() {
 
@@ -43,11 +48,29 @@ class LandingFragment : Fragment() {
             buttonStartGame.setOnClickListener {
                 navigateToGame()
             }
+
+            githubLink.setOnClickListener {
+                launchImplicitIntent()
+            }
+
+            playerOneNameEditText.setOnKeyListener { view, keyCode, _ ->
+                if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                    hideSoftKeyboard(view)
+                }
+                false
+            }
+
+            playerTwoNameEditText.setOnKeyListener { view, keyCode, _ ->
+                if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                    hideSoftKeyboard(view)
+                }
+                false
+            }
         }
     }
 
     /**
-     * Creates action to be used by [navigateToGame]
+     * Creates action to be used by [navigateToGame].
      *
      * @return [LandingFragmentDirections.actionLandingFragmentToGameFragment]
      */
@@ -60,10 +83,28 @@ class LandingFragment : Fragment() {
     }
 
     /**
-     * Navigates from [LandingFragment] to [GameFragment]
+     * Navigates from [LandingFragment] to [GameFragment].
      */
     private fun navigateToGame() {
         findNavController().navigate(createActionFromSafeArgs())
+    }
+
+    /**
+     * Takes user to my GitHub page for the app.
+     */
+    private fun launchImplicitIntent() {
+        val intent =
+            Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Jherscu/TicTacToe"))
+        startActivity(intent)
+    }
+
+    /**
+     * Hides soft keybord when enter key is pressed
+     */
+    private fun hideSoftKeyboard(view: View) {
+        val imm =
+            context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     // Resets binding object

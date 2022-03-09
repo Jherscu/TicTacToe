@@ -27,9 +27,11 @@
     </style>
 
     <style name="TextInputEditText">
-        <item name="android:textColorHint">#00695C</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/edit_text_height</item>
+        <item name="android:maxLength">12</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:inputType">text</item>
     </style>
 
     <style name="GameBoxLand">

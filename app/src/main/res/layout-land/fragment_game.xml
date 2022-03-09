@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toStartOf="@id/image_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:background="@color/yellow_100"
+        tools:background="@drawable/rounded_text_view_pink"
         tools:text="O's Turn" />
 
     <ImageView
@@ -44,11 +44,13 @@
 
         <ImageView
             android:id="@+id/grid_upper_left"
-            style="@style/GameBoxLand" />
+            style="@style/GameBoxLand"
+            tools:background="@drawable/icon_x" />
 
         <ImageView
             android:id="@+id/grid_upper_center"
-            style="@style/GameBoxLand" />
+            style="@style/GameBoxLand"
+            tools:background="@drawable/icon_x" />
 
         <ImageView
             android:id="@+id/grid_upper_right"
@@ -64,11 +66,13 @@
 
         <ImageView
             android:id="@+id/grid_center_right"
-            style="@style/GameBoxLand" />
+            style="@style/GameBoxLand"
+            tools:background="@drawable/icon_o" />
 
         <ImageView
             android:id="@+id/grid_lower_left"
-            style="@style/GameBoxLand" />
+            style="@style/GameBoxLand"
+            tools:background="@drawable/icon_o" />
 
         <ImageView
             android:id="@+id/grid_lower_center"
@@ -76,7 +80,8 @@
 
         <ImageView
             android:id="@+id/grid_lower_right"
-            style="@style/GameBoxLand" />
+            style="@style/GameBoxLand"
+            tools:background="@drawable/icon_x" />
 
     </GridLayout>
 
