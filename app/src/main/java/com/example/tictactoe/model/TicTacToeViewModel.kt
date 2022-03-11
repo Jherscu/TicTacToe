@@ -1,12 +1,10 @@
 package com.example.tictactoe.model
 
-import android.util.Log
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.*
 import com.example.tictactoe.R
 import kotlinx.coroutines.launch
-
-const val TAG = "VIEW_MODEL"
+import timber.log.Timber
 
 /**
  * ViewModel for [com.example.tictactoe.MainActivity]
@@ -175,7 +173,7 @@ class TicTacToeViewModel : ViewModel() {
                 else -> throw IllegalArgumentException("Must pass valid symbol to getIcon")
             }
         } catch (e: IllegalArgumentException) {
-            Log.e(TAG, e.message.toString())
+            Timber.e(e.message.toString())
             R.drawable.ic_baseline_error_outline_24
         }
     }

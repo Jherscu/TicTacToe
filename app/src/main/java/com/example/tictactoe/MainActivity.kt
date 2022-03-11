@@ -10,6 +10,8 @@ import com.example.tictactoe.model.TicTacToeViewModel
 import com.example.tictactoe.ui.GameFragment
 import com.example.tictactoe.ui.GameFragmentDirections
 import com.example.tictactoe.ui.dialog.WinningDialog
+import timber.log.Timber
+import timber.log.Timber.DebugTree
 
 /**
  * [MainActivity] hosts the fragments for the Tic Tac Toe app.
@@ -21,6 +23,10 @@ class MainActivity : AppCompatActivity(), WinningDialog.WinningDialogListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(DebugTree())
+        }
 
         // Finds fragments associated with this activity
         // and casts selected fragment as NavHostFragment
