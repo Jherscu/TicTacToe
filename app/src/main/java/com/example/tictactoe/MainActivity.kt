@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import timber.log.Timber
+import timber.log.Timber.DebugTree
 
 /**
  * [MainActivity] hosts the fragments for the Tic Tac Toe app.
@@ -16,6 +18,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(DebugTree())
+        }
 
         // Finds fragments associated with this activity
         // and casts selected fragment as NavHostFragment

@@ -1,7 +1,6 @@
 package com.example.tictactoe.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +13,7 @@ import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.example.tictactoe.R
 import com.example.tictactoe.databinding.FragmentGameBinding
 import com.example.tictactoe.model.TicTacToeViewModel
-
-const val TAG = "GAME FRAGMENT"
+import timber.log.Timber
 
 /**
  * [GameFragment] is the fragment where the Tic Tac Toe game takes place.
@@ -274,7 +272,7 @@ class GameFragment : Fragment() {
                 else -> throw IllegalArgumentException("Must be a valid ImageView associated with a tic tac toe box")
             }
         } catch (e: java.lang.IllegalArgumentException) {
-            Log.e(TAG, e.message.toString())
+            Timber.e(e.message.toString())
             R.string.invalid_box
         }
     }
