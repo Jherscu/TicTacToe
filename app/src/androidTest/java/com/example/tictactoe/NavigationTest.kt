@@ -47,11 +47,10 @@ class NavigationTest {
 
     }
 
-    // Extracts initialization of Game fragment to use in multiple tests
+    // Extracts initialization of Game fragment to use in multiple (possible) tests in larger app
     private fun gameFragmentInit() {
         // Frame args as safe args object and pass them to init
-        val args = GameFragmentArgs("X", "O")
-        val bundle = args.toBundle()
+        val bundle = GameFragmentArgs("X", "O").toBundle()
 
         init(
             scenario = launchFragmentInContainer<GameFragment>(
@@ -86,9 +85,11 @@ class NavigationTest {
         ) */
 
         // w/ Hamcrest
-        assertThat("Navigation to GameFragment failed",
+        assertThat(
+            "Navigation to GameFragment failed",
             navController.currentDestination?.id,
-            `is`(R.id.gameFragment))
+            `is`(R.id.gameFragment)
+        )
     }
 
     @Test
@@ -108,8 +109,10 @@ class NavigationTest {
         ) */
 
         // w/ Hamcrest
-        assertThat("Navigation to GameFragment failed",
+        assertThat(
+            "Navigation to GameFragment failed",
             navController.currentDestination?.id,
-            `is`(R.id.landingFragment))
+            `is`(R.id.landingFragment)
+        )
     }
 }

@@ -20,6 +20,19 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    testOptions {
+        animationsDisabled = true
+        unitTests {
+            // Always show the result of every unit test when running via command line,
+            // even if it passes
+            includeAndroidResources = true
+            /* Decide whether un-mocked methods from android.jar should
+             * throw exceptions or return default values
+             * (Combats exceptions thrown for log statements, etc. in test methods) */
+            returnDefaultValues = true
+        }
+    }
+
     buildFeatures {
         viewBinding true
     }
@@ -32,12 +45,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
     }
 }
 
@@ -48,19 +61,24 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "com.google.android.material:material:$material_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+    implementation "androidx.test.ext:junit-ktx:$junit_androidx_ext_version"
 
     // Testing
     testImplementation "junit:junit:$junit_version"
-    testImplementation "androidx.arch.core:core-testing:$junit_core_version" // LiveData
+    testImplementation "org.robolectric:robolectric:$robolectric_version"
+    testImplementation "androidx.arch.core:core-testing:$arch_test_version" // LiveData
     androidTestImplementation "androidx.test.ext:junit:$junit_androidx_ext_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
     debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
-    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espresso_contrib_version"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_contrib_version"
+
     // Nav
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
-    // LiveData
+    // LiveData/StateFlow
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
@@ -68,4 +86,7 @@ dependencies {
     // Navigation Component
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Logging
+    implementation "com.jakewharton.timber:timber:$timber_version"
 }

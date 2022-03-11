@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- Makes accessing a property marked w/ visible for test, from the wrong scope, an error -->
+    <issue id="VisibleForTests" severity="error" />
+    <!-- Makes hardcoded text an error, but ignores any hardcoded values in test classes -->
+    <issue id="HardcodedText" severity="error">
+        <ignore path="src/test/java/com/example/tictactoe" />
+        <ignore path="src/androidTest/java/com/example/tictactoe" />
+    </issue>
+</lint>
