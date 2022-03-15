@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/purple_500">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/player_turn_view"
+        style="@style/Widget.TicTacToe.TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/image_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@drawable/rounded_text_view_pink"
+        tools:text="O's Turn" />
+
+    <ImageView
+        android:id="@+id/image_background"
+        android:layout_width="@dimen/game_background_length_land"
+        android:layout_height="@dimen/game_background_length_land"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/board"
+        android:src="@drawable/icon_background"
+        app:layout_constraintBottom_toBottomOf="@id/tic_tac_toe_board"
+        app:layout_constraintEnd_toEndOf="@id/tic_tac_toe_board"
+        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintStart_toStartOf="@id/tic_tac_toe_board"
+        app:layout_constraintTop_toTopOf="@id/tic_tac_toe_board"
+        app:layout_constraintVertical_bias="0.45" />
+
+    <GridLayout
+        android:id="@+id/tic_tac_toe_board"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:rowCount="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_end_game"
+        app:layout_constraintStart_toEndOf="@id/player_turn_view"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/grid_upper_left"
+            style="@style/GameBoxLand"
+            tools:background="@drawable/icon_x" />
+
+        <ImageView
+            android:id="@+id/grid_upper_center"
+            style="@style/GameBoxLand"
+            tools:background="@drawable/icon_x" />
+
+        <ImageView
+            android:id="@+id/grid_upper_right"
+            style="@style/GameBoxLand" />
+
+        <ImageView
+            android:id="@+id/grid_center_left"
+            style="@style/GameBoxLand" />
+
+        <ImageView
+            android:id="@+id/grid_center"
+            style="@style/GameBoxLand" />
+
+        <ImageView
+            android:id="@+id/grid_center_right"
+            style="@style/GameBoxLand"
+            tools:background="@drawable/icon_o" />
+
+        <ImageView
+            android:id="@+id/grid_lower_left"
+            style="@style/GameBoxLand"
+            tools:background="@drawable/icon_o" />
+
+        <ImageView
+            android:id="@+id/grid_lower_center"
+            style="@style/GameBoxLand" />
+
+        <ImageView
+            android:id="@+id/grid_lower_right"
+            style="@style/GameBoxLand"
+            tools:background="@drawable/icon_x" />
+
+    </GridLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_end_game"
+        style="@style/Widget.TicTacToe.Button"
+        android:layout_width="@dimen/square_button_length"
+        android:layout_height="@dimen/square_button_length"
+        android:text="@string/end_game"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_background"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -65,7 +65,6 @@ dependencies {
 
     // Testing
     testImplementation "junit:junit:$junit_version"
-    testImplementation "org.robolectric:robolectric:$robolectric_version"
     testImplementation "androidx.arch.core:core-testing:$arch_test_version" // LiveData
     androidTestImplementation "androidx.test.ext:junit:$junit_androidx_ext_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
@@ -78,7 +77,6 @@ dependencies {
     // LiveData/StateFlow
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"

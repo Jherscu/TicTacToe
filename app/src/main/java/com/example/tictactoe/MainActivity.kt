@@ -2,16 +2,22 @@ package com.example.tictactoe
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.tictactoe.model.TicTacToeViewModel
+import com.example.tictactoe.ui.GameFragment
+import com.example.tictactoe.ui.GameFragmentDirections
+import com.example.tictactoe.ui.dialog.WinningDialog
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
 /**
  * [MainActivity] hosts the fragments for the Tic Tac Toe app.
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), WinningDialog.WinningDialogListener {
 
     private lateinit var navController: NavController
 
@@ -42,5 +48,35 @@ class MainActivity : AppCompatActivity() {
     // Short circuits result if navController.navigateUp() is valid
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    // The following two methods can only be called from GameFragment via WinningDialog
+    override fun onWinningDialogPositiveClick(
+        dialog: DialogFragment,
+        viewModel: TicTacToeViewModel,
+        fragment: GameFragment
+    ) {
+        // Temporarily save state for use in reinstating Fragment with the same names
+        val playerOne = viewModel.playerOneName.value!!
+        val playerTwo = viewModel.playerTwoName.value!!
+
+        // Refresh fragment from scratch so the UI reflects the cleared data
+        viewModel.resetGameState()
+        fragment.findNavController()
+            .navigate(
+                GameFragmentDirections.actionGameFragmentSelf(
+                    playerOneName = playerOne,
+                    playerTwoName = playerTwo
+                )
+            )
+    }
+
+    override fun onWinningDialogNegativeClick(
+        dialog: DialogFragment,
+        viewModel: TicTacToeViewModel
+    ) {
+        // Exit game and reset
+        viewModel.resetGameState()
+        navController.navigate(GameFragmentDirections.actionGameFragmentToLandingFragment())
     }
 }

@@ -1,11 +1,9 @@
 package com.example.tictactoe.model
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.*
 import com.example.tictactoe.R
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 /**
@@ -33,7 +31,7 @@ class TicTacToeViewModel : ViewModel() {
     val currentPlayer: LiveData<String> = _currentPlayer
 
     init {
-        resetGameState()
+        GameBoardModelImpl.resetState()
     }
 
     val gameBoard = GameBoardModelImpl.gameBoard.asLiveData()
@@ -76,57 +74,66 @@ class TicTacToeViewModel : ViewModel() {
      *  If one has been made, the state of the LiveData variables [_isWin]
      *  and [_winningPlayer] are changed to reflect the results via [announceWinner].
      */
-    fun isThreeInARow(): Boolean {
-
+    fun testGameBoardForWin(gameBoard: List<List<String>>) {
         /* Vertical checks for the win:
-               If the set of a specified column does not contain an empty space,
-               and is equal to the set of any single space within it,
-               it must be three in a row */
+                 If the set of a specified column does not contain an empty space,
+                 and is equal to the set of any single space within it,
+                 it must be three in a row */
         // Column 1
-        if (testRow(GameBoardPart.COLUMN_LEFT.part, GameBoardPart.BOX_TOP_LEFT.part)) return true
+        testRow(
+            setOf(gameBoard[0][0], gameBoard[1][0], gameBoard[2][0]),
+            setOf(gameBoard[0][0])
+        )
 
         // Column 2
-        if (testRow(GameBoardPart.COLUMN_MIDDLE.part, GameBoardPart.BOX_CENTER.part)) return true
+        testRow(
+            setOf(gameBoard[0][1], gameBoard[1][1], gameBoard[2][1]),
+            setOf(gameBoard[1][1])
+        )
 
         // Column 3
-        if (testRow(
-                GameBoardPart.COLUMN_RIGHT.part,
-                GameBoardPart.BOX_BOTTOM_RIGHT.part
-            )
-        ) return true
+        testRow(
+            setOf(gameBoard[0][2], gameBoard[1][2], gameBoard[2][2]),
+            setOf(gameBoard[2][2])
+        )
 
         /* Horizontal checks for the win:
-               If the set of a specified row does not contain an empty space,
-               and is equal to the set of any single space within it,
-               it must be three in a row */
+                 If the set of a specified row does not contain an empty space,
+                 and is equal to the set of any single space within it,
+                 it must be three in a row */
         // Row 1
-        if (testRow(GameBoardPart.ROW_TOP.part, GameBoardPart.BOX_TOP_LEFT.part)) return true
+        testRow(
+            gameBoard[0].toSet(),
+            setOf(gameBoard[0][0])
+        )
 
         // Row 2
-        if (testRow(GameBoardPart.ROW_MIDDLE.part, GameBoardPart.BOX_CENTER.part)) return true
+        testRow(
+            gameBoard[1].toSet(),
+            setOf(gameBoard[1][1])
+        )
 
         // Row 3
-        if (testRow(GameBoardPart.ROW_BOTTOM.part, GameBoardPart.BOX_BOTTOM_RIGHT.part)) return true
+        testRow(
+            gameBoard[2].toSet(),
+            setOf(gameBoard[2][2])
+        )
 
         /* Diagonal checks for the win:
-               If the set of a specified diagonal row does not contain an empty space,
-               and is equal to the set of any single space within it,
-               it must be three in a row */
+                 If the set of a specified diagonal row does not contain an empty space,
+                 and is equal to the set of any single space within it,
+                 it must be three in a row */
         // Top left to bottom right
-        if (testRow(
-                GameBoardPart.DIAGONAL_TOP_LEFT_TO_BOTTOM_RIGHT.part,
-                GameBoardPart.BOX_CENTER.part
-            )
-        ) return true
+        testRow(
+            setOf(gameBoard[0][0], gameBoard[1][1], gameBoard[2][2]),
+            setOf(gameBoard[1][1])
+        )
 
         // Top right to bottom left
-        if (testRow(
-                GameBoardPart.DIAGONAL_TOP_RIGHT_TO_BOTTOM_LEFT.part,
-                GameBoardPart.BOX_CENTER.part
-            )
-        ) return true
-
-        return false
+        testRow(
+            setOf(gameBoard[0][2], gameBoard[1][1], gameBoard[2][0]),
+            setOf(gameBoard[1][1])
+        )
     }
 
     /**
@@ -186,7 +193,6 @@ class TicTacToeViewModel : ViewModel() {
     private fun swapCurrentPlayer() =
         if (_currentPlayer.value == "X") _currentPlayer.value = "O" else _currentPlayer.value = "X"
 
-
     /**
      * When box is clicked by the user:
      *   - Checks if the move is valid
@@ -204,21 +210,31 @@ class TicTacToeViewModel : ViewModel() {
         return if (moveIsValid(gameBoard.value!![x][y])) {
             GameBoardModelImpl.addSymbol(x, y, currentPlayer.value.toString())
             swapCurrentPlayer()
-            isThreeInARow()
             true
         } else {
             false
         }
     }
 
-    @VisibleForTesting
+    /**
+     * Sets _winningPlayer to "DRAW"
+     */
+    fun declareDraw() {
+        _winningPlayer.value = "DRAW"
+    }
+
+    /**
+     * Resets the viewModel and GameBoardImpl state
+     */
     fun resetGameState() {
-        GameBoardModelImpl.resetState()
-        _playerOneName.value = ""
-        _playerTwoName.value = ""
-        _isWin.value = false
-        _winningPlayer.value = ""
-        _currentPlayer.value = "X"
+        viewModelScope.launch {
+            GameBoardModelImpl.resetState()
+            _playerOneName.value = ""
+            _playerTwoName.value = ""
+            _isWin.value = false
+            _winningPlayer.value = ""
+            _currentPlayer.value = "X"
+        }
     }
 
 }

@@ -5,14 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.example.tictactoe.R
 import com.example.tictactoe.databinding.FragmentGameBinding
 import com.example.tictactoe.model.TicTacToeViewModel
+import com.example.tictactoe.ui.dialog.WinningDialog
 import timber.log.Timber
 
 /**
@@ -56,6 +57,47 @@ class GameFragment : Fragment() {
         viewModel.updatePlayerName(2, args.playerTwoName)
 
         observeGameBoard() // Used for initial construction/reconstruction of Fragment
+
+        viewModel.isWin.observe(viewLifecycleOwner) {
+            if (it) {
+                WinningDialog(viewModel, this).apply {
+                    // Prevents back button from exiting dialog
+                    isCancelable = false
+                }.show(
+                    childFragmentManager,
+                    "WinningDialogFragmentAsWin"
+                )
+            }
+        }
+
+        viewModel.currentPlayer.observe(viewLifecycleOwner) {
+            binding.playerTurnView.apply {
+                when (it) {
+                    "X" -> {
+                        text = getString(R.string.player_turn, viewModel.playerOneName.value)
+                        background = AppCompatResources.getDrawable(
+                            context,
+                            R.drawable.rounded_text_view_yellow
+                        )
+                    }
+                    "O" -> {
+                        text = getString(R.string.player_turn, viewModel.playerTwoName.value)
+                        background = AppCompatResources.getDrawable(
+                            context,
+                            R.drawable.rounded_text_view_pink
+                        )
+                    }
+                    else -> getString(R.string.confused_turn)
+                }
+            }
+        }
+
+        viewModel.winningPlayer.observe(viewLifecycleOwner) {
+            if (it == "DRAW") {
+                WinningDialog(viewModel, this)
+                    .show(childFragmentManager, "WinningDialogFragmentAsDraw")
+            }
+        }
 
         binding.apply {
             buttonEndGame.setOnClickListener {
@@ -187,6 +229,12 @@ class GameFragment : Fragment() {
             with(it[2][2]) {
                 updateView(binding.gridLowerRight, this)
             }
+
+            viewModel.testGameBoardForWin(it)
+
+            if (!it.flatten().toSet().contains("") && viewModel.isWin.value == false) {
+                viewModel.declareDraw()
+            }
         }
     }
 
@@ -197,7 +245,7 @@ class GameFragment : Fragment() {
     private fun Boolean.toastWhenFalse() {
         if (equals(false)) {
             Toast.makeText(
-                getApplicationContext(),
+                requireActivity().applicationContext,
                 R.string.invalid_move,
                 Toast.LENGTH_SHORT
             )
@@ -276,9 +324,6 @@ class GameFragment : Fragment() {
             R.string.invalid_box
         }
     }
-
-    // TODO( If viewModel.isWin == true, create dialog. Announce winning player.
-    //  opt 1 end game return to home, opt 2 reset state start over )
 
     // Resets binding object
     override fun onDestroyView() {
