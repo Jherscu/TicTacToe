@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.tictactoe.model.TicTacToeViewModel
 import com.example.tictactoe.ui.GameFragment
@@ -55,15 +56,19 @@ class MainActivity : AppCompatActivity(), WinningDialog.WinningDialogListener {
         viewModel: TicTacToeViewModel,
         fragment: GameFragment
     ) {
-        // Play again with the same names
-        viewModel.resetGameState()
+        // Temporarily save state for use in reinstating Fragment with the same names
+        val playerOne = viewModel.playerOneName.value!!
+        val playerTwo = viewModel.playerTwoName.value!!
+
         // Refresh fragment from scratch so the UI reflects the cleared data
-        fragment.parentFragmentManager.beginTransaction()
-            .detach(fragment)
-            .commit()
-        fragment.parentFragmentManager.beginTransaction()
-            .attach(fragment)
-            .commit()
+        viewModel.resetGameState()
+        fragment.findNavController()
+            .navigate(
+                GameFragmentDirections.actionGameFragmentSelf(
+                    playerOneName = playerOne,
+                    playerTwoName = playerTwo
+                )
+            )
     }
 
     override fun onWinningDialogNegativeClick(

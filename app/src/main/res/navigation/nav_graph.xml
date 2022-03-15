@@ -23,6 +23,13 @@
             android:name="playerTwoName"
             android:defaultValue="O"
             app:argType="string" />
+        <action
+            android:id="@+id/action_gameFragment_self"
+            app:destination="@id/gameFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/gameFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/landingFragment"
