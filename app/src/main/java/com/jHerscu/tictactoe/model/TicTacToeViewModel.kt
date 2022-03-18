@@ -1,13 +1,13 @@
-package com.example.tictactoe.model
+package com.jHerscu.tictactoe.model
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.*
-import com.example.tictactoe.R
+import com.jHerscu.tictactoe.R
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
 /**
- * ViewModel for [com.example.tictactoe.MainActivity]
+ * ViewModel for [com.jHerscu.tictactoe.MainActivity]
  *
  * Contains logic for a Tic Tac Toe game.
  */
@@ -38,7 +38,7 @@ class TicTacToeViewModel : ViewModel() {
 
     /**
      * Updates viewModel properties with safeArgs name input from
-     * [com.example.tictactoe.ui.LandingFragment]
+     * [com.jHerscu.tictactoe.ui.LandingFragment]
      *
      * @param player The player: 1 ( "X" ) or 2 ( "O" )
      *

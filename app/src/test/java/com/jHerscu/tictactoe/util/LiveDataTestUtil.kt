@@ -1,7 +1,7 @@
 /* Copyright 2019 Google LLC.
    SPDX-License-Identifier: Apache-2.0 */
 
-package com.example.tictactoe.util
+package com.jHerscu.tictactoe.util
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData

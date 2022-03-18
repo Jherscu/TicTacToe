@@ -1,4 +1,4 @@
-package com.example.tictactoe
+package com.jHerscu.tictactoe
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.testing.FragmentScenario
@@ -13,9 +13,9 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.internal.runner.junit4.statement.UiThreadStatement.runOnUiThread
-import com.example.tictactoe.ui.GameFragment
-import com.example.tictactoe.ui.GameFragmentArgs
-import com.example.tictactoe.ui.LandingFragment
+import com.jHerscu.tictactoe.ui.GameFragment
+import com.jHerscu.tictactoe.ui.GameFragmentArgs
+import com.jHerscu.tictactoe.ui.LandingFragment
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Test
 import org.junit.runner.RunWith

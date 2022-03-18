@@ -1,13 +1,13 @@
-package com.example.tictactoe.ui.dialog
+package com.jHerscu.tictactoe.ui.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
-import com.example.tictactoe.R
-import com.example.tictactoe.model.TicTacToeViewModel
-import com.example.tictactoe.ui.GameFragment
+import com.jHerscu.tictactoe.R
+import com.jHerscu.tictactoe.model.TicTacToeViewModel
+import com.jHerscu.tictactoe.ui.GameFragment
 
 /**
  * Dialog called from [GameFragment] that will announce the winner of the game, or a draw.

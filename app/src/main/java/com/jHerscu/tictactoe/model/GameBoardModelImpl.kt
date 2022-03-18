@@ -1,4 +1,4 @@
-package com.example.tictactoe.model
+package com.jHerscu.tictactoe.model
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

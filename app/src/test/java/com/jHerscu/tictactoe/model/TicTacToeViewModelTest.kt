@@ -1,9 +1,9 @@
-package com.example.tictactoe.model
+package com.jHerscu.tictactoe.model
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.tictactoe.R
-import com.example.tictactoe.data.source.FakeGameBoardModel
-import com.example.tictactoe.util.getOrAwaitValue
+import com.jHerscu.tictactoe.R
+import com.jHerscu.tictactoe.data.source.FakeGameBoardModel
+import com.jHerscu.tictactoe.util.getOrAwaitValue
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After

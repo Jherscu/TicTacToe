@@ -1,4 +1,4 @@
-package com.example.tictactoe
+package com.jHerscu.tictactoe
 
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
@@ -8,8 +8,8 @@ import androidx.test.espresso.matcher.ViewMatchers.withContentDescription
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import com.example.tictactoe.ui.GameFragment
-import com.example.tictactoe.ui.GameFragmentArgs
+import com.jHerscu.tictactoe.ui.GameFragment
+import com.jHerscu.tictactoe.ui.GameFragmentArgs
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

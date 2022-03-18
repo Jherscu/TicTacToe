@@ -1,4 +1,4 @@
-package com.example.tictactoe.ui
+package com.jHerscu.tictactoe.ui
 
 import android.content.Context
 import android.content.Intent
@@ -12,7 +12,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import com.example.tictactoe.databinding.FragmentLandingBinding
+import com.jHerscu.tictactoe.databinding.FragmentLandingBinding
 
 /**
  * [LandingFragment] is the first screen visible to the user.

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/gameFragment"
-        android:name="com.example.tictactoe.ui.GameFragment"
+        android:name="com.jHerscu.tictactoe.ui.GameFragment"
         android:label="@string/app_name">
         <action
             android:id="@+id/action_gameFragment_to_landingFragment"
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/landingFragment"
-        android:name="com.example.tictactoe.ui.LandingFragment"
+        android:name="com.jHerscu.tictactoe.ui.LandingFragment"
         android:label="@string/lets_play">
         <action
             android:id="@+id/action_landingFragment_to_gameFragment"

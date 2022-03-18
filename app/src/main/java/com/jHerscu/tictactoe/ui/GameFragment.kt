@@ -1,4 +1,4 @@
-package com.example.tictactoe.ui
+package com.jHerscu.tictactoe.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,10 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.tictactoe.R
-import com.example.tictactoe.databinding.FragmentGameBinding
-import com.example.tictactoe.model.TicTacToeViewModel
-import com.example.tictactoe.ui.dialog.WinningDialog
+import com.jHerscu.tictactoe.R
+import com.jHerscu.tictactoe.databinding.FragmentGameBinding
+import com.jHerscu.tictactoe.model.TicTacToeViewModel
+import com.jHerscu.tictactoe.ui.dialog.WinningDialog
 import timber.log.Timber
 
 /**

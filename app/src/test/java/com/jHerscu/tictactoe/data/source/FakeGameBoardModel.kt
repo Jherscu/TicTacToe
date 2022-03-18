@@ -1,6 +1,6 @@
-package com.example.tictactoe.data.source
+package com.jHerscu.tictactoe.data.source
 
-import com.example.tictactoe.model.GameBoardModel
+import com.jHerscu.tictactoe.model.GameBoardModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

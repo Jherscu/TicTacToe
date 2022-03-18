@@ -1,4 +1,4 @@
-package com.example.tictactoe
+package com.jHerscu.tictactoe
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,10 +7,10 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.tictactoe.model.TicTacToeViewModel
-import com.example.tictactoe.ui.GameFragment
-import com.example.tictactoe.ui.GameFragmentDirections
-import com.example.tictactoe.ui.dialog.WinningDialog
+import com.jHerscu.tictactoe.model.TicTacToeViewModel
+import com.jHerscu.tictactoe.ui.GameFragment
+import com.jHerscu.tictactoe.ui.GameFragmentDirections
+import com.jHerscu.tictactoe.ui.dialog.WinningDialog
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
