@@ -23,9 +23,6 @@ User Story:
 
     - a User cancels the game with the END GAME button
 
-        - Dialog pops up asking Users if they are sure they want to end the game
-
-
     TASKS:
 
     - Implement Basic layout [X - 2/3/22]
