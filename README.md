@@ -42,4 +42,4 @@ User Story:
 
     - Resolve accessibility issues/fine tune UI [X - 3/8/22]
 
-    - Practice prepping for play store
+    - Practice prepping for play store [UP ON PLAY STORE - 3/19/22]
