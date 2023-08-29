@@ -1,4 +1,8 @@
 # TicTacToe
+
+## Download Here:
+- https://play.google.com/store/apps/details?id=com.jHerscu.tictactoe
+
 Basic Two Player Tic Tac Toe app utilizing:
 
 - Fragments and Jetpack Navigation Component
@@ -42,4 +46,4 @@ User Story:
 
     - Resolve accessibility issues/fine tune UI [X - 3/8/22]
 
-    - Practice prepping for play store
+    - Practice prepping for play store [UP ON PLAY STORE - 3/19/22]
