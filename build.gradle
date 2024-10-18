@@ -23,7 +23,7 @@ buildscript {
         timber_version = '4.7.1'
         app_version_major = 1
         app_version_minor = 0
-        app_version_patch = 1
+        app_version_patch = 2
     }
     repositories {
         google()
